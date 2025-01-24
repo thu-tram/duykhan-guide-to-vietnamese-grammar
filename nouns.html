@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Nouns - duykhan&#x27;s guide to Vietnamese Grammar</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">duykhan&#x27;s guide to Vietnamese Grammar</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="vietnamese-nouns--yourvietnamese"><a class="header" href="#vietnamese-nouns--yourvietnamese">Vietnamese nouns – YourVietnamese</a></h1>
+<p>So we have learned in the <a href="https://yourvietnamese.com/learn-vietnamese/sentence-structure/">overview about Vietnamese grammar</a> that it has the same Subject + Verb + Object (SVO) sentence structure as English. If you haven’t gone through that lesson, it’s highly recommended you read it before proceeding with this lesson because you can find there the big picture of Vietnamese Grammar as well as the most important differences from English.</p>
+<p>The grammar of Vietnamese nouns is plain and simple. There is no singular and plural form: <em>pen</em> in <em>two pen</em> has the same form as <em>pen</em> in <em>one pen</em>: no adding of suffix – <em>s</em> whatsoever.</p>
+<h3 id="vietnamese-measure-words"><a class="header" href="#vietnamese-measure-words">Vietnamese Measure words</a></h3>
+<p>In English, we know that there are countable nouns, which can be counted such as pens and books, and uncountable nouns, which are uncountable such as water, air. For countable nouns, we simply use them directly, and with numbers when needed, as in <em>I have 2 books</em>. On the other hand, as uncountable nouns such as <em>water</em> can’t be counted, we need to use “containers” such as “glass” or “bottle” for <em>water</em>.</p>
+<p>In Vietnamese, we’ll use “containers” for uncountable nouns as in English. However, for countable nouns, we also need to put in front of them a type of words known as <em>measure words</em> or <em>classifiers</em>. To illustrate this, let’s take the simple sentence: <em>I have a book</em>. Its direct word-by-word Vietnamese translation is <em>Tôi</em>(“I”) <em>có</em>(“have”) <em>một</em>(“a”) <em>sách</em>(“book”)”.</p>
+<p>If you use the above direct translation <em>Tôi có một sách</em>, native speakers would still completely understand what you mean. In addition, they’d also know that you are…still learning the Vietnamese Grammar! Here, even though <em>book</em> is a countable noun, we still need to use its measure word, which is <em>quyển</em>. The correct translation is thus: <em>Tôi có một quyển sách</em>.</p>
+<p>The reason why every (countable) noun in Vietnamese needs a measure word is that nouns alone without their measure words carry an abstract meaning. For example, <em>sách</em>, without its measure word <em>quyển</em>, arouses a general abstract notion, similar to what the plural form <em>books</em> does to English speakers. Its measure word has the effect of “concretize” that abstract meaning into a specific book instance, which is countable.</p>
+<p>This explains why in <em>Reading books is a very effective way of learning</em>, the Vietnamese translation of <em>books</em> is just <em>sách</em>, without its measure word since we are not talking about any particular book but just books in general. In English, to refer to such a general notion, we normally use plural nouns. In Vietnamese, this is expressed by using nouns without their measure words: givent that <em>read</em> translates into <em>đọc</em>, the phrase <em>reading books</em> in our example is therefore translated to <em>đọc sách</em>, not <em>đọc quyển sách</em>.</p>
+<p>About counting using numbers, how do you translate <em>I have two books</em> given that <em>hai</em> is the translation of <em>two</em>? Yes, it’s <em>Tôi có hai quyển sách</em>. From this example, we see that measure words should be put closer to their nouns than numbers. Indeed, there is no type of word that can separate a noun and its measure word!</p>
+<p>We have seen one measure word: <em>quyển</em> for <em>sách</em>(“book”). You can find the most common measure words and their brief usage in the following list.</p>
+<p>The common measure words:</p>
+<ul>
+<li>cái/chiếc: for most inanimate objects. When both are interchangeable, “chiếc” is more formal.</li>
+<li>con: for animals and children.</li>
+<li>bài: for songs, drawings, poems, essays and the likes.</li>
+<li>câu: for sentential units of verses, lyrics, quotes.</li>
+<li>cây: for stick-like objects such as umbrella, sticks.</li>
+<li>quả/trái: for round-shape objects such as fruits.</li>
+<li>quyển/cuốn: for book-type objects: book, magazine.</li>
+<li>tờ: for sheets of paper or newspaper.</li>
+<li>lá: for smaller sheets of paper such as letters, cards.</li>
+</ul>
+<p>If you are interested in learning more about measure words, you can find more information at <a href="#ref1">[1]</a>.</p>
+<p>That’s about it for measure words. There are quite a couple of them so it may takes you some time. Beyond that, please take note of the point about the absence of measure words when expressing general notions.</p>
+<p>The next section introduces the commonly used articles (“a”, “an”, “the”) and demonstratives (“this”, “that”, “these”, “those”)</p>
+<h3 id="articles-and-demonstratives"><a class="header" href="#articles-and-demonstratives">Articles and Demonstratives</a></h3>
+<p>It’s commonly acknowledged that <em>a</em>/ <em>an</em> and <em>the</em> are among the words(to be more precise, <em>articles</em>) that are used extensively in English. And the same holds true for the demonstrative determiners <em>this</em>, <em>that</em>, <em>these</em> and <em>those</em>. This is the reason why it would probably be good to know how to translate them into Vietnamese.</p>
+<p>As a quick recap, the two words <em>a</em> and <em>an</em> are used in English to refer to a singular and indefinite noun, a noun which has not been clearly specified or previously mentioned as in <em>I have a grammar book</em>. The word <em>the</em> is just the opposite, referring to definite nouns. In Vietnamese, it’s generally the case that <em>a</em> or <em>an</em> is translated to <em>một</em>, which is actually the literal translation of <em>one</em>; and <em>the</em> is either translated to <em>này</em> or <em>kia</em>, which are the literal translations of <em>this</em> and <em>that</em> in that order, or it’s dropped completely.</p>
+<p>I haveagrammar book.Tôi cómộtquyển sách ngữ pháp.</p>
+<p>This Vietnamese way of translating <em>a</em>/ <em>an</em> to “một” is actually not too peculiar since we could have written the example English sentence using <em>one</em> instead of <em>a</em>: <em>I have one grammar book</em> although the use of <em>one</em> may lead to a slight change of emphasis.</p>
+<p>Let’s now shift our focus to <em>the</em> with this example: <em>I have just bought a book. The book is about learning foreign languages</em>. As you can see, the second mention of book is qualified by <em>the</em> thanks to its first mention in the previous sentence. The translation of <em>the book</em> in the second sentence is <em>quyển sách đó</em>. Let’s analyse this translation snippet in more details:</p>
+<p>As indicated in the table, <em>đó</em> is the translation of <em>that</em>. In Vietnamese, there is no direct equivalent of <em>the</em> and in order to express the definiteness of an object we would instead use <em>this</em>, <em>that</em>, <em>these</em> or <em>those</em>. You might have also noticed that <em>đó</em> is put after the noun <em>sách</em>, which is a general rule. As a quick exercise, given that <em>this</em> translates to <em>này</em>, how do you translate the phrase <em>this book</em> into Vietnamese? Well, the translation process in slow motion goes like this: <em>this book</em> –&gt; <em>book this</em> —&gt; <em>quyển sách này</em>. Feeling okay? Just a bit more and you would become a master of Vietnamese nouns.</p>
+<p>It’s proper time we give an example in which <em>the</em> needs no translation. Consider the sentence <em>The weather is sunny today</em> (and of course, you’re feeling happy :). In English, there is no doubt that we need <em>the</em> with <em>weather</em>. In Vietnamese, however, there is no grammatical requirementfor an equivalent of <em>the</em>: <em>weather</em> alone is the correct way. Similarly, the translation of <em>the sun</em> in <em>the sun rises in the east</em> is just <em>mặt trời</em>(“sun”).</p>
+<p>Last but not least, the translation of <em>these</em> and <em>those</em> are slightly less easy than those of <em>this</em> and <em>that</em>. Recall that <em>this book</em> is translated into the order <em>book this</em>. The phrase <em>these books</em> is not translated simply in the order <em>books these</em> because there is no one-word direction translation of <em>these</em>. The correct translation of <em>these</em> is <em>Những … này</em> wherethe the 3 dots is the place of nouns. As such, <em>these books</em> is translated into <em>những (quyển sách) này</em>. By the way, can you recall where did you see the word <em>này</em>? If you say it’s the translation of <em>this</em>: well-done!</p>
+<p>The translation of <em>those</em> is <em>Những … đó</em>. Do you find anything in common? The word <em>những</em>? Yes, it’s the word encoding plurality in our translations.</p>
+<h3 id="pronouns"><a class="header" href="#pronouns">Pronouns</a></h3>
+<p>We’ve briefly discussed “subject pronouns”, which include <em>I</em>, <em>You</em>, <em>He</em>/ <em>She</em>, etc. in English. The only difficulty in using subject pronouns in Vietnamese that there is no single translation of, for example, <em>I</em> and the correct one to use varies with the situation. An in-depth discussion on the various ways of usage for subject pronouns can be found at <a href="#ref2">[2]</a>.</p>
+<p>Examples of “object pronouns” include <em>me</em>, <em>you</em>, <em>him</em>, <em>her</em>, etc. In Vietnamese, this is simple: the same word is used for both <em>I</em> and <em>me</em>! In other words, subject and object pronouns are the same in Vietnamese.</p>
+<p>Possessive pronouns in English refer to such words as <em>my</em>, <em>your</em>, <em>his</em>, <em>her</em>, etc. The Vietnamese equivalents are given below:</p>
+<p>mycủa tôiyourcủa bạnhiscủa anhhercủa cô</p>
+<p>The important difference is that while possessive pronouns are put in front of nouns in English, they are put after nouns in Vietnamese. Consider the following example:</p>
+<p>Example:</p>
+<p>Đâylàquyển sáchcủa tôiThisisbookmy</p>
+<p>The literal English translation of <em>của tôi</em> is <em>of me</em> so that the way to say <em>This is my book</em> in Vietnamese is to say <em>This is the book of me</em>. The only note here is that because there are different ways to translate <em>me</em>, there are different ways to translate <em>of me</em> or <em>my</em>.</p>
+<p>That’s about it for possessive pronouns. Let’s summarise what we’ve learned in this short lesson:</p>
+<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<p>In this lesson on Vietnamese nouns, we’ve gone through the following important aspects:</p>
+<ul>
+<li>There is no plural form of nouns: only one form for both singular and plural meanings.</li>
+<li>Nouns, whether countable or not, require the use of measure words in front of them. When used in the abstract sense, measure words are not used.</li>
+<li><em>This</em> and <em>that</em> are put after the nouns they modify. <em>These</em> and <em>Those</em> are translated into <em>Những …</em> + <em>này</em>/ <em>kia</em>,respectively.</li>
+<li>The way to express <em>my book</em> in Vietnamese is <em>book of me</em>.</li>
+</ul>
+<p>If you have questions related to this post, please comment below.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="starter-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="unit_nouns.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="starter-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="unit_nouns.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

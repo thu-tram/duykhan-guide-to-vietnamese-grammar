@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Modals and Auxiliary Verbs - duykhan&#x27;s guide to Vietnamese Grammar</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">duykhan&#x27;s guide to Vietnamese Grammar</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="vietnamese-modals-and-auxiliary-verbs---vietlango-vietnamese"><a class="header" href="#vietnamese-modals-and-auxiliary-verbs---vietlango-vietnamese">Vietnamese Modals and Auxiliary Verbs - VietLango Vietnamese</a></h1>
+<p>Vietnamese is a fascinating and rich language with a unique grammar structure distinct from English. One of the crucial aspects of mastering Vietnamese involves understanding its modals and auxiliary verbs. These elements are essential because they help convey nuances in meaning, such as ability, permission, obligation, and possibility. In this article, we will delve into the various modals and auxiliary verbs in Vietnamese, their usage, and provide examples to help you grasp their applications better.</p>
+<h2 id="introduction-to-vietnamese-modals-and-auxiliary-verbs"><a class="header" href="#introduction-to-vietnamese-modals-and-auxiliary-verbs">Introduction to Vietnamese Modals and Auxiliary Verbs</a></h2>
+<p>Modals and auxiliary verbs in Vietnamese play a significant role in forming complex sentences and expressing different shades of meaning. Unlike English, which relies heavily on modal verbs like “can,” “must,” and “should,” Vietnamese uses a range of particles and auxiliary verbs to achieve the same purpose. Understanding these components will not only enhance your comprehension of Vietnamese but also improve your ability to communicate effectively.</p>
+<h3 id="what-are-modals-and-auxiliary-verbs"><a class="header" href="#what-are-modals-and-auxiliary-verbs">What are Modals and Auxiliary Verbs?</a></h3>
+<p>In English, modal verbs are auxiliary verbs that express necessity, possibility, permission, or ability. Examples include “can,” “may,” “must,” “shall,” and “will.” Auxiliary verbs, on the other hand, are used alongside main verbs to form different tenses, moods, or voices. Examples of auxiliary verbs in English include “be,” “have,” and “do.”</p>
+<p>In Vietnamese, modals and auxiliary verbs serve similar functions but are often expressed through distinct words and structures. Vietnamese does not have inflections like English, so the context and specific particles play a crucial role in conveying meaning.</p>
+<h2 id="common-vietnamese-modals-and-their-usage"><a class="header" href="#common-vietnamese-modals-and-their-usage">Common Vietnamese Modals and Their Usage</a></h2>
+<p>Let’s explore some of the most common modals in Vietnamese and how they are used in sentences.</p>
+<h3 id="1-có-thể-can-could"><a class="header" href="#1-có-thể-can-could">1. Có Thể (Can, Could)</a></h3>
+<p>“**Có thể**” is used to express ability or possibility, similar to “can” or “could” in English.</p>
+<p>Examples:</p>
+<p>– Tôi có thể nói tiếng Việt. (I can speak Vietnamese.)</p>
+<p>– Anh ấy có thể đến muộn. (He could arrive late.)</p>
+<h3 id="2-nên-should-ought-to"><a class="header" href="#2-nên-should-ought-to">2. Nên (Should, Ought to)</a></h3>
+<p>“**Nên**” is used to give advice or suggest that something is a good idea, similar to “should” or “ought to” in English.</p>
+<p>Examples:</p>
+<p>– Bạn nên học tiếng Việt mỗi ngày. (You should study Vietnamese every day.)</p>
+<p>– Chúng ta nên đi ngủ sớm. (We ought to go to bed early.)</p>
+<h3 id="3-phải-must-have-to"><a class="header" href="#3-phải-must-have-to">3. Phải (Must, Have to)</a></h3>
+<p>“**Phải**” indicates necessity or obligation, akin to “must” or “have to” in English.</p>
+<p>Examples:</p>
+<p>– Tôi phải làm bài tập về nhà. (I must do my homework.)</p>
+<p>– Bạn phải đến đúng giờ. (You have to arrive on time.)</p>
+<h3 id="4-sẽ-will-shall"><a class="header" href="#4-sẽ-will-shall">4. Sẽ (Will, Shall)</a></h3>
+<p>“**Sẽ**” is used to indicate future actions or events, similar to “will” or “shall” in English.</p>
+<p>Examples:</p>
+<p>– Chúng tôi sẽ đi du lịch vào tuần sau. (We will travel next week.)</p>
+<p>– Bạn sẽ gặp anh ấy ở đâu? (Where shall you meet him?)</p>
+<h3 id="5-Được-can-may-be-allowed-to"><a class="header" href="#5-Được-can-may-be-allowed-to">5. Được (Can, May, Be Allowed to)</a></h3>
+<p>“**Được**” is used to express permission or capability, similar to “can” or “may” in English.</p>
+<p>Examples:</p>
+<p>– Tôi được phép nghỉ học hôm nay. (I am allowed to take the day off today.)</p>
+<p>– Bạn có thể được giúp đỡ không? (Can you be helped?)</p>
+<h2 id="auxiliary-verbs-in-vietnamese"><a class="header" href="#auxiliary-verbs-in-vietnamese">Auxiliary Verbs in Vietnamese</a></h2>
+<p>Auxiliary verbs in Vietnamese are used to form different tenses, aspects, or voices. These verbs often precede the main verb and help indicate the time of action or the nature of the action.</p>
+<h3 id="1-Đã-past-tense-marker"><a class="header" href="#1-Đã-past-tense-marker">1. Đã (Past Tense Marker)</a></h3>
+<p>“**Đã**” is used to indicate that an action has been completed in the past, similar to the past tense in English.</p>
+<p>Examples:</p>
+<p>– Tôi đã ăn sáng. (I have eaten breakfast.)</p>
+<p>– Cô ấy đã đi làm. (She has gone to work.)</p>
+<h3 id="2-Đang-present-continuous-tense-marker"><a class="header" href="#2-Đang-present-continuous-tense-marker">2. Đang (Present Continuous Tense Marker)</a></h3>
+<p>“**Đang**” is used to indicate an ongoing action, similar to the present continuous tense in English.</p>
+<p>Examples:</p>
+<p>– Anh ấy đang học bài. (He is studying.)</p>
+<p>– Chúng tôi đang chơi bóng đá. (We are playing soccer.)</p>
+<h3 id="3-sẽ-future-tense-marker"><a class="header" href="#3-sẽ-future-tense-marker">3. Sẽ (Future Tense Marker)</a></h3>
+<p>As mentioned earlier, “**sẽ**” is also used to indicate future actions or events, functioning as an auxiliary verb to mark the future tense.</p>
+<p>Examples:</p>
+<p>– Tôi sẽ đi chợ vào chiều nay. (I will go to the market this afternoon.)</p>
+<p>– Họ sẽ đến thăm chúng tôi. (They will come to visit us.)</p>
+<h3 id="4-Đã-từng-used-to-have-ever"><a class="header" href="#4-Đã-từng-used-to-have-ever">4. Đã Từng (Used to, Have Ever)</a></h3>
+<p>“**Đã từng**” is used to indicate that an action happened at some point in the past, similar to “used to” or “have ever” in English.</p>
+<p>Examples:</p>
+<p>– Tôi đã từng sống ở Hà Nội. (I used to live in Hanoi.)</p>
+<p>– Bạn đã từng ăn phở chưa? (Have you ever eaten pho?)</p>
+<h2 id="combining-modals-and-auxiliary-verbs"><a class="header" href="#combining-modals-and-auxiliary-verbs">Combining Modals and Auxiliary Verbs</a></h2>
+<p>In Vietnamese, modals and auxiliary verbs can be combined to convey more complex meanings. Let’s look at some examples to illustrate this.</p>
+<h3 id="1-ability-in-the-past"><a class="header" href="#1-ability-in-the-past">1. Ability in the Past</a></h3>
+<p>To express ability in the past, you can combine “**có thể**” (can) with “**đã**” (past tense marker).</p>
+<p>Example:</p>
+<p>– Tôi đã có thể hoàn thành công việc. (I was able to complete the work.)</p>
+<h3 id="2-suggesting-future-actions"><a class="header" href="#2-suggesting-future-actions">2. Suggesting Future Actions</a></h3>
+<p>To suggest future actions, you can combine “**nên**” (should) with “**sẽ**” (future tense marker).</p>
+<p>Example:</p>
+<p>– Bạn nên sẽ bắt đầu học từ bây giờ. (You should start studying from now.)</p>
+<h3 id="3-ongoing-obligations"><a class="header" href="#3-ongoing-obligations">3. Ongoing Obligations</a></h3>
+<p>To indicate ongoing obligations, you can combine “**phải**” (must) with “**đang**” (present continuous marker).</p>
+<p>Example:</p>
+<p>– Tôi đang phải làm việc. (I am having to work.)</p>
+<h2 id="nuances-and-contextual-meanings"><a class="header" href="#nuances-and-contextual-meanings">Nuances and Contextual Meanings</a></h2>
+<p>The use of modals and auxiliary verbs in Vietnamese can vary based on context, tone, and formality. Here are some tips to help you understand these nuances better.</p>
+<h3 id="1-formal-vs-informal-speech"><a class="header" href="#1-formal-vs-informal-speech">1. Formal vs. Informal Speech</a></h3>
+<p>In formal speech, people often use full modal verbs and auxiliary verbs. In informal speech, contractions or omissions may occur. For instance, instead of saying “**Tôi sẽ đi**” (I will go), in casual conversation, you might hear “**Tôi đi**” with the future tense implied by context.</p>
+<h3 id="2-tone-and-intention"><a class="header" href="#2-tone-and-intention">2. Tone and Intention</a></h3>
+<p>The tone in which you use modals can also affect their meaning. For example, “**phải**” (must) can sound very strong and demanding. To soften the request, you might use “**nên**” (should) instead, depending on your intention.</p>
+<p>Example:</p>
+<p>– Bạn phải làm điều đó. (You must do it.) – Strong and demanding.</p>
+<p>– Bạn nên làm điều đó. (You should do it.) – Softer and more suggestive.</p>
+<h2 id="practice-exercises"><a class="header" href="#practice-exercises">Practice Exercises</a></h2>
+<p>To solidify your understanding of Vietnamese modals and auxiliary verbs, let’s try some practice exercises.</p>
+<h3 id="exercise-1-translate-the-following-sentences"><a class="header" href="#exercise-1-translate-the-following-sentences">Exercise 1: Translate the Following Sentences</a></h3>
+<p>1. I can help you with your homework.</p>
+<p>2. She should visit her grandmother.</p>
+<p>3. They must finish their project by tomorrow.</p>
+<p>4. We will go to the beach next weekend.</p>
+<p>5. Have you ever tried Vietnamese coffee?</p>
+<h3 id="exercise-2-fill-in-the-blanks-with-the-appropriate-modal-or-auxiliary-verb"><a class="header" href="#exercise-2-fill-in-the-blanks-with-the-appropriate-modal-or-auxiliary-verb">Exercise 2: Fill in the Blanks with the Appropriate Modal or Auxiliary Verb</a></h3>
+<p>1. Anh ấy ___ (can) nói tiếng Anh rất giỏi.</p>
+<p>2. Tôi ___ (must) đi chợ mua thức ăn.</p>
+<p>3. Chúng tôi ___ (should) chuẩn bị cho kỳ thi.</p>
+<p>4. Cô ấy ___ (used to) sống ở nước ngoài.</p>
+<p>5. Bạn ___ (will) đi du lịch vào mùa hè này.</p>
+<h3 id="exercise-3-combine-modals-and-auxiliary-verbs"><a class="header" href="#exercise-3-combine-modals-and-auxiliary-verbs">Exercise 3: Combine Modals and Auxiliary Verbs</a></h3>
+<p>Create sentences by combining the given modals and auxiliary verbs.</p>
+<p>1. Sẽ + Có thể (future ability)</p>
+<p>2. Đang + Phải (ongoing obligation)</p>
+<p>3. Đã + Nên (past suggestion)</p>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Mastering Vietnamese modals and auxiliary verbs is a crucial step in becoming proficient in the language. These elements help you express a wide range of meanings, from ability and permission to necessity and possibility. By understanding their usage and practicing regularly, you will enhance your communication skills and deepen your understanding of Vietnamese grammar.</p>
+<p>Remember, language learning is a journey, and consistent practice is key. Keep exploring, practicing, and immersing yourself in the language to achieve fluency. Happy learning!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="pronouns.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="plural.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="pronouns.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="plural.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

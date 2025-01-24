@@ -1,0 +1,1233 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>duykhan&#x27;s guide to Vietnamese Grammar</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">duykhan&#x27;s guide to Vietnamese Grammar</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="vietnamese-grammar-guide"><a class="header" href="#vietnamese-grammar-guide">Vietnamese Grammar Guide</a></h1>
+<p>This guide is currently under construction.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vietnamese-nouns--yourvietnamese"><a class="header" href="#vietnamese-nouns--yourvietnamese">Vietnamese nouns – YourVietnamese</a></h1>
+<p>So we have learned in the <a href="https://yourvietnamese.com/learn-vietnamese/sentence-structure/">overview about Vietnamese grammar</a> that it has the same Subject + Verb + Object (SVO) sentence structure as English. If you haven’t gone through that lesson, it’s highly recommended you read it before proceeding with this lesson because you can find there the big picture of Vietnamese Grammar as well as the most important differences from English.</p>
+<p>The grammar of Vietnamese nouns is plain and simple. There is no singular and plural form: <em>pen</em> in <em>two pen</em> has the same form as <em>pen</em> in <em>one pen</em>: no adding of suffix – <em>s</em> whatsoever.</p>
+<h3 id="vietnamese-measure-words"><a class="header" href="#vietnamese-measure-words">Vietnamese Measure words</a></h3>
+<p>In English, we know that there are countable nouns, which can be counted such as pens and books, and uncountable nouns, which are uncountable such as water, air. For countable nouns, we simply use them directly, and with numbers when needed, as in <em>I have 2 books</em>. On the other hand, as uncountable nouns such as <em>water</em> can’t be counted, we need to use “containers” such as “glass” or “bottle” for <em>water</em>.</p>
+<p>In Vietnamese, we’ll use “containers” for uncountable nouns as in English. However, for countable nouns, we also need to put in front of them a type of words known as <em>measure words</em> or <em>classifiers</em>. To illustrate this, let’s take the simple sentence: <em>I have a book</em>. Its direct word-by-word Vietnamese translation is <em>Tôi</em>(“I”) <em>có</em>(“have”) <em>một</em>(“a”) <em>sách</em>(“book”)”.</p>
+<p>If you use the above direct translation <em>Tôi có một sách</em>, native speakers would still completely understand what you mean. In addition, they’d also know that you are…still learning the Vietnamese Grammar! Here, even though <em>book</em> is a countable noun, we still need to use its measure word, which is <em>quyển</em>. The correct translation is thus: <em>Tôi có một quyển sách</em>.</p>
+<p>The reason why every (countable) noun in Vietnamese needs a measure word is that nouns alone without their measure words carry an abstract meaning. For example, <em>sách</em>, without its measure word <em>quyển</em>, arouses a general abstract notion, similar to what the plural form <em>books</em> does to English speakers. Its measure word has the effect of “concretize” that abstract meaning into a specific book instance, which is countable.</p>
+<p>This explains why in <em>Reading books is a very effective way of learning</em>, the Vietnamese translation of <em>books</em> is just <em>sách</em>, without its measure word since we are not talking about any particular book but just books in general. In English, to refer to such a general notion, we normally use plural nouns. In Vietnamese, this is expressed by using nouns without their measure words: givent that <em>read</em> translates into <em>đọc</em>, the phrase <em>reading books</em> in our example is therefore translated to <em>đọc sách</em>, not <em>đọc quyển sách</em>.</p>
+<p>About counting using numbers, how do you translate <em>I have two books</em> given that <em>hai</em> is the translation of <em>two</em>? Yes, it’s <em>Tôi có hai quyển sách</em>. From this example, we see that measure words should be put closer to their nouns than numbers. Indeed, there is no type of word that can separate a noun and its measure word!</p>
+<p>We have seen one measure word: <em>quyển</em> for <em>sách</em>(“book”). You can find the most common measure words and their brief usage in the following list.</p>
+<p>The common measure words:</p>
+<ul>
+<li>cái/chiếc: for most inanimate objects. When both are interchangeable, “chiếc” is more formal.</li>
+<li>con: for animals and children.</li>
+<li>bài: for songs, drawings, poems, essays and the likes.</li>
+<li>câu: for sentential units of verses, lyrics, quotes.</li>
+<li>cây: for stick-like objects such as umbrella, sticks.</li>
+<li>quả/trái: for round-shape objects such as fruits.</li>
+<li>quyển/cuốn: for book-type objects: book, magazine.</li>
+<li>tờ: for sheets of paper or newspaper.</li>
+<li>lá: for smaller sheets of paper such as letters, cards.</li>
+</ul>
+<p>If you are interested in learning more about measure words, you can find more information at <a href="nouns.html#ref1">[1]</a>.</p>
+<p>That’s about it for measure words. There are quite a couple of them so it may takes you some time. Beyond that, please take note of the point about the absence of measure words when expressing general notions.</p>
+<p>The next section introduces the commonly used articles (“a”, “an”, “the”) and demonstratives (“this”, “that”, “these”, “those”)</p>
+<h3 id="articles-and-demonstratives"><a class="header" href="#articles-and-demonstratives">Articles and Demonstratives</a></h3>
+<p>It’s commonly acknowledged that <em>a</em>/ <em>an</em> and <em>the</em> are among the words(to be more precise, <em>articles</em>) that are used extensively in English. And the same holds true for the demonstrative determiners <em>this</em>, <em>that</em>, <em>these</em> and <em>those</em>. This is the reason why it would probably be good to know how to translate them into Vietnamese.</p>
+<p>As a quick recap, the two words <em>a</em> and <em>an</em> are used in English to refer to a singular and indefinite noun, a noun which has not been clearly specified or previously mentioned as in <em>I have a grammar book</em>. The word <em>the</em> is just the opposite, referring to definite nouns. In Vietnamese, it’s generally the case that <em>a</em> or <em>an</em> is translated to <em>một</em>, which is actually the literal translation of <em>one</em>; and <em>the</em> is either translated to <em>này</em> or <em>kia</em>, which are the literal translations of <em>this</em> and <em>that</em> in that order, or it’s dropped completely.</p>
+<p>I haveagrammar book.Tôi cómộtquyển sách ngữ pháp.</p>
+<p>This Vietnamese way of translating <em>a</em>/ <em>an</em> to “một” is actually not too peculiar since we could have written the example English sentence using <em>one</em> instead of <em>a</em>: <em>I have one grammar book</em> although the use of <em>one</em> may lead to a slight change of emphasis.</p>
+<p>Let’s now shift our focus to <em>the</em> with this example: <em>I have just bought a book. The book is about learning foreign languages</em>. As you can see, the second mention of book is qualified by <em>the</em> thanks to its first mention in the previous sentence. The translation of <em>the book</em> in the second sentence is <em>quyển sách đó</em>. Let’s analyse this translation snippet in more details:</p>
+<p>As indicated in the table, <em>đó</em> is the translation of <em>that</em>. In Vietnamese, there is no direct equivalent of <em>the</em> and in order to express the definiteness of an object we would instead use <em>this</em>, <em>that</em>, <em>these</em> or <em>those</em>. You might have also noticed that <em>đó</em> is put after the noun <em>sách</em>, which is a general rule. As a quick exercise, given that <em>this</em> translates to <em>này</em>, how do you translate the phrase <em>this book</em> into Vietnamese? Well, the translation process in slow motion goes like this: <em>this book</em> –&gt; <em>book this</em> —&gt; <em>quyển sách này</em>. Feeling okay? Just a bit more and you would become a master of Vietnamese nouns.</p>
+<p>It’s proper time we give an example in which <em>the</em> needs no translation. Consider the sentence <em>The weather is sunny today</em> (and of course, you’re feeling happy :). In English, there is no doubt that we need <em>the</em> with <em>weather</em>. In Vietnamese, however, there is no grammatical requirementfor an equivalent of <em>the</em>: <em>weather</em> alone is the correct way. Similarly, the translation of <em>the sun</em> in <em>the sun rises in the east</em> is just <em>mặt trời</em>(“sun”).</p>
+<p>Last but not least, the translation of <em>these</em> and <em>those</em> are slightly less easy than those of <em>this</em> and <em>that</em>. Recall that <em>this book</em> is translated into the order <em>book this</em>. The phrase <em>these books</em> is not translated simply in the order <em>books these</em> because there is no one-word direction translation of <em>these</em>. The correct translation of <em>these</em> is <em>Những … này</em> wherethe the 3 dots is the place of nouns. As such, <em>these books</em> is translated into <em>những (quyển sách) này</em>. By the way, can you recall where did you see the word <em>này</em>? If you say it’s the translation of <em>this</em>: well-done!</p>
+<p>The translation of <em>those</em> is <em>Những … đó</em>. Do you find anything in common? The word <em>những</em>? Yes, it’s the word encoding plurality in our translations.</p>
+<h3 id="pronouns"><a class="header" href="#pronouns">Pronouns</a></h3>
+<p>We’ve briefly discussed “subject pronouns”, which include <em>I</em>, <em>You</em>, <em>He</em>/ <em>She</em>, etc. in English. The only difficulty in using subject pronouns in Vietnamese that there is no single translation of, for example, <em>I</em> and the correct one to use varies with the situation. An in-depth discussion on the various ways of usage for subject pronouns can be found at <a href="nouns.html#ref2">[2]</a>.</p>
+<p>Examples of “object pronouns” include <em>me</em>, <em>you</em>, <em>him</em>, <em>her</em>, etc. In Vietnamese, this is simple: the same word is used for both <em>I</em> and <em>me</em>! In other words, subject and object pronouns are the same in Vietnamese.</p>
+<p>Possessive pronouns in English refer to such words as <em>my</em>, <em>your</em>, <em>his</em>, <em>her</em>, etc. The Vietnamese equivalents are given below:</p>
+<p>mycủa tôiyourcủa bạnhiscủa anhhercủa cô</p>
+<p>The important difference is that while possessive pronouns are put in front of nouns in English, they are put after nouns in Vietnamese. Consider the following example:</p>
+<p>Example:</p>
+<p>Đâylàquyển sáchcủa tôiThisisbookmy</p>
+<p>The literal English translation of <em>của tôi</em> is <em>of me</em> so that the way to say <em>This is my book</em> in Vietnamese is to say <em>This is the book of me</em>. The only note here is that because there are different ways to translate <em>me</em>, there are different ways to translate <em>of me</em> or <em>my</em>.</p>
+<p>That’s about it for possessive pronouns. Let’s summarise what we’ve learned in this short lesson:</p>
+<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<p>In this lesson on Vietnamese nouns, we’ve gone through the following important aspects:</p>
+<ul>
+<li>There is no plural form of nouns: only one form for both singular and plural meanings.</li>
+<li>Nouns, whether countable or not, require the use of measure words in front of them. When used in the abstract sense, measure words are not used.</li>
+<li><em>This</em> and <em>that</em> are put after the nouns they modify. <em>These</em> and <em>Those</em> are translated into <em>Những …</em> + <em>này</em>/ <em>kia</em>,respectively.</li>
+<li>The way to express <em>my book</em> in Vietnamese is <em>book of me</em>.</li>
+</ul>
+<p>If you have questions related to this post, please comment below.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vietnamese-unit-nouns"><a class="header" href="#vietnamese-unit-nouns">Vietnamese Unit Nouns</a></h1>
+<h2 id="vietnamese-unit-nouns-1"><a class="header" href="#vietnamese-unit-nouns-1">Vietnamese Unit Nouns</a></h2>
+<p>Subject, verb and object are the most important parts in Vietnamese construction of the sentence. But another part is also important that is unit nouns or known as countable nouns or classifiers such as con (gà - chicken), cái (nhà - house), chiếc (xe - car)… Today, let’s study more about this important issue.</p>
+<h2 id="how-to-use-unit-nouns-in-vietnamese"><a class="header" href="#how-to-use-unit-nouns-in-vietnamese"><strong>How to use “unit nouns” in Vietnamese</strong></a></h2>
+<p>As we know, English has no unit nouns, it’s quite simple to count the number of objects or people. Such as singular noun - “a cat” or plural noun - “2 cats” with “s” or “es” at the end of the word. But in Vietnamese, we have “unit nouns” and this is the construction of sentence in Vietnamese with “unit nouns”</p>
+<p>Tôi có 1 con mèo – I have a cat</p>
+<p>Anh ta có 2 cái nhà – He has 2 houses</p>
+<p>So, you could see in Vietnamese, we use the construction with a unit noun like this</p>
+<p>Subject + Verb + number + unit noun + noun</p>
+<p>For understanding easily, you could see how to use unit nouns in the following table</p>
+<p><strong>No.</strong></p>
+<p><strong>VIETNAMESE</strong></p>
+<p><strong>ENGLISH</strong></p>
+<p>1</p>
+<p>1 CON MÈO</p>
+<p>A CAT</p>
+<p>2</p>
+<p>CON MÈO NÀY</p>
+<p>THIS CAT</p>
+<p>3</p>
+<p>CON MÈO ĐÓ</p>
+<p>THAT CAT</p>
+<p>5</p>
+<p>CON MÈO THỨ NHẤT</p>
+<p>CAT NO.1</p>
+<p>6</p>
+<p>CON MÈO THỨ HAI</p>
+<p>CAT NO.2</p>
+<p>7</p>
+<p>CON MÈO ĐẦU TIÊN</p>
+<p>FIRST CAT</p>
+<p>8</p>
+<p>CON MÈO CUỐI CÙNG</p>
+<p>LAST CAT</p>
+<p>9</p>
+<p>CON MÈO NÀO?</p>
+<p>WHICH CAT?</p>
+<p>10</p>
+<p>CON MÈO MỚI</p>
+<p>NEW CAT</p>
+<p>11</p>
+<p>NHIỀU CON MÈO</p>
+<p>MANY CATS</p>
+<p>12</p>
+<p>MỘT CÁI TÔ</p>
+<p>A BIG BOWL</p>
+<p>13</p>
+<p>MỘT TÔ HỦ TIẾU</p>
+<p>A BIG BOWL OF NOODLE</p>
+<p>14</p>
+<p>MỘT CÁI LY</p>
+<p>A GLASS</p>
+<p>15</p>
+<p>MỘT LY NƯỚC LỌC</p>
+<p>A GLASS OF WATER</p>
+<h2 id="list-of-unit-nouns-in-vietnamese"><a class="header" href="#list-of-unit-nouns-in-vietnamese"><strong>List of “unit nouns” in Vietnamese</strong></a></h2>
+<p><strong>USUAL UNIT NOUNS</strong></p>
+<p><strong>No</strong>.</p>
+<p><strong>UNIT NOUNS</strong></p>
+<p><strong>MEANING</strong></p>
+<p><strong>USED FOR</strong></p>
+<p>1</p>
+<p>Người</p>
+<p>People</p>
+<p>Woman, man</p>
+<p>2</p>
+<p>Cái</p>
+<p>Thing, piece</p>
+<p>Shirt, trouser, dress, chair, table, bag, hat, bowl, plate, spoon, fork, watch, clock, glass, bottle, machine</p>
+<p>3</p>
+<p>Con</p>
+<p>animal</p>
+<p>Animal, doll, road, river</p>
+<p>4</p>
+<p>Đôi</p>
+<p>Couple</p>
+<p>Shoes, chopstick</p>
+<p>5</p>
+<p>Bộ</p>
+<p>Set</p>
+<p>Clothes, movie, drama, story</p>
+<p>6</p>
+<p>Quả</p>
+<p>Fruit</p>
+<p>Fruit, ball, mountain</p>
+<p>7</p>
+<p>Chiếc</p>
+<p>One</p>
+<p>Car, motorcycle, ship, airplane</p>
+<p>8</p>
+<p>Cây</p>
+<p>Tree</p>
+<p>Pen, pencil, umbrella, lipstick, tree</p>
+<p>9</p>
+<p>Món</p>
+<p>Thing, kind</p>
+<p>Food, goods</p>
+<p>10</p>
+<p>Thỏi</p>
+<p>Ingot</p>
+<p>Lipstick, gold</p>
+<p>12</p>
+<p>Quyển</p>
+<p>Book</p>
+<p>Book, notebook, magazine</p>
+<p>14</p>
+<p>Ly</p>
+<p>Glass</p>
+<p>Glass of water, glass of beer</p>
+<p>15</p>
+<p>Tách</p>
+<p>Cup</p>
+<p>Cup of tea, cup of coffee</p>
+<p>Chén</p>
+<p>Small bowl</p>
+<p>Bowl of soup, bowl of rice</p>
+<p>16</p>
+<p>Chai</p>
+<p>Bottle</p>
+<p>Bottle of beer, bottle of water</p>
+<p>17</p>
+<p>Dĩa</p>
+<p>Plate</p>
+<p>Food</p>
+<p>18</p>
+<p>Cục</p>
+<p>Chunk</p>
+<p>Soap, candy, stone</p>
+<p>19</p>
+<p>Sợi</p>
+<p>Line</p>
+<p>Necklace, string, hair, thread</p>
+<p>20</p>
+<p>Chỗ</p>
+<p>Place</p>
+<p>Seat</p>
+<p>21</p>
+<p>Cuộn</p>
+<p>Reel</p>
+<p>Tape, cassette, string, thread</p>
+<p>22</p>
+<p>Điếu</p>
+<p>Roll</p>
+<p>Cigarette</p>
+<p>23</p>
+<p>Gói</p>
+<p>Pack</p>
+<p>Gift pack, candy pack, cookie pack, anything is packed</p>
+<p>24</p>
+<p>Chuyện</p>
+<p>Story</p>
+<p>Story</p>
+<p>26</p>
+<p>Bản</p>
+<p>Version</p>
+<p>Contract, document, copy</p>
+<p>27</p>
+<p>Ngôi</p>
+<p>House</p>
+<p>House, star,</p>
+<p>28</p>
+<p>Miếng</p>
+<p>Piece</p>
+<p>Piece of bread, piece of meat, piece of cookie</p>
+<p>29</p>
+<p>Bông</p>
+<p>Flower</p>
+<p>Flower</p>
+<p>31</p>
+<p>Lần</p>
+<p>Time</p>
+<p>Time</p>
+<p>32</p>
+<p>Phòng</p>
+<p>Room</p>
+<p>Room</p>
+<h2 id="excercises"><a class="header" href="#excercises">Excercises</a></h2>
+<p><strong>Please translate the following sentences into Vietnamese</strong></p>
+<p>1. How much is that book? And how’s about this?</p>
+<p>2. Could I take a look at that black bag?</p>
+<p>3. I think that I like the orange shoes more.</p>
+<p>4. No more discounts.</p>
+<p>5. This shirt is more expensive than that shirt</p>
+<p>6. He’s the tallest one in the classroom</p>
+<p>7. Between him and me, who is the taller one?</p>
+<p>8. Between this notebook and that one, which is thicker one?</p>
+<p>9. This is the largest airplane in the world.</p>
+<p>10. He’s the richest billionaire in America.</p>
+<p>11. Why have you taken too much time to choose, this one and that one are similar?</p>
+<p>12. Those 2 people’s face quite resembles.</p>
+<p>13. These 2 book’s price í the same.</p>
+<p>14. Do you have any pets at your house? I have 2 cats.</p>
+<p>15. Many celebrities doesn’t want their family in the spotlight.</p>
+<p>16. I choose the second black cat.</p>
+<p>17. Is the pencil on the table yours?</p>
+<p>18. He has a new dog.</p>
+<p>19. Which is the cat that you stole from her?</p>
+<p>20. In the past year, how many movies did you watch?</p>
+<p><strong>Please check your answer</strong></p>
+<p>1. Quyển sách kia giá bao nhiêu? Còn quyển này thì sao?</p>
+<p>2. Cho tôi xem cái túi màu đen kia.</p>
+<p>3. Tôi nghĩ là tôi thích đôi giày màu cam hơn</p>
+<p>4. Không giảm được nữa đâu.</p>
+<p>5. Cái áo này đắt hơn cái áo kia</p>
+<p>6. Anh ta cao nhất trong lớp học này</p>
+<p>7. Giữa anh ta và tôi người nào cao hơn?</p>
+<p>8. Quyển vở này với quyển vở kia, quyển nào dày hơn?</p>
+<p>9. Đây là chiếc máy bay lớn nhất thế giới</p>
+<p>10. Ông ta là tỷ phú giàu nhất ở Thái Lan</p>
+<p>11. Chọn làm gì, cái này với cái kia đều giống nhau cả mà</p>
+<p>12. Hai người đó mặt nhìn khá giống nhau</p>
+<p>13. Hai quyển sách này bằng giá nhau</p>
+<p>14. Nhà anh có vật nuôi không? Có 2 con mèo.</p>
+<p>15. Nhiều diễn viên không thích công khai gia đình của họ</p>
+<p>16. Tôi chọn con chó màu đen thứ 2.</p>
+<p>17. Cây bút chì ở trên bàn là của anh à?</p>
+<p>18. Anh có ta con chó mới</p>
+<p>19. Đâu là con mèo mà anh đã lấy cắp của cô ta?</p>
+<p>20. Trong năm vừa qua, anh đã xem qua bao nhiêu bộ phim rồi?</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vietnamese-verbs--yourvietnamese"><a class="header" href="#vietnamese-verbs--yourvietnamese">Vietnamese verbs – YourVietnamese</a></h1>
+<p>After the lessons on <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-nouns/">Vietnamese nouns</a> and <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-adjectives/">adjectives</a>, this express course now introduces you to the usage of <em>Vietnamese verbs</em>.</p>
+<p>Before going into the details, the good news, again, is that verbs in Vietnamese is generally much simpler than their counterparts in English. Let’s see below why this is true.</p>
+<h3 id="conjugation-of-vietnamese-verbs"><a class="header" href="#conjugation-of-vietnamese-verbs">Conjugation of Vietnamese verbs</a></h3>
+<p>First of all, while each verb in English has a singular form for the third-person case ( <em>she</em>, <em>he</em>, <em>it</em>) by, generally, adding “s” to the base form, this isn’t a feature of Vietnamese. That is to say that you’ll use the same verb form <em>đi</em>(“go”) in <em>Tôi đi</em>(“I go”) and <em>Cô ấy đi</em>(“She goes”). How simpler this is for learning Vietnamese!</p>
+<h3 id="vietnamese-verb-tenses"><a class="header" href="#vietnamese-verb-tenses">Vietnamese Verb tenses</a></h3>
+<p>The major simplification you’ll enjoy in learning Vietnamese verbs lies in its verb tense system. As a recap, we know that in English there are quite a couple of verb tenses, and for good reasons, such as past simple, past continuous, past perfect; the equivalents for the present and the future; …and more. You should then be very relieved to learn that the only major verb tenses in Vietnamese are: the present simple, the present continuous, the past simple and the future simple!</p>
+<p>A possible question by the keen readers: How would we then express the equivalents of past continuous or past perfect? The answer for the absence of the past continuous tense is that Vietnamese “leverage” on the present continuous to express the past continuous. How about the past perfect? Well, that would not be expressed through verb tense, but the use of relative time indicators such as <em>before</em> and <em>after</em>.</p>
+<p>Let’s go into a little more details about this interesting difference in verb tenses through a concrete example. Suppose that you want to ask a friend when she will come back home, you’d probably say something like <em>When will you come home?</em>. Similarly, if we want to ask when she came back: <em>When did you come home?”</em>. We can see from these two examples that in English we need to explicitly encode the notion of past or future time frame in the verb <em>come</em> by conjugating it in the past simple or future simple tense. Does Vietnamese share this way of time encoding with English?</p>
+<p>Let’s imagine the situation: yesterday, you came home and saw your spouse at home to your surprise because she/he usually gets home from work later than you; then you remarked: <em>You came home early today!</em>, followed by the question <em>When did you come home?</em>. In this specific circumstance, it’s quite clear that the question of <em>when</em> refers to the past, which means we may not need to reflect that in the tense of the verb <em>come</em>. Or at least that’s the way we would use in Vietnamese: <em>When do you come home?</em>. Yes, the time frame is encoded not in the sentence but in the situation! Certainly, this feature of the language would potentially make it ambiguous in some situations and, should the confusion arise, time expressions such as <em>yesterday</em> or <em>just now</em> or <em>tomorrow</em> would be employed.</p>
+<p>Now that the notions of the past and the future are encoded implicitly in dialogues’ settings and not in verbs, it’s no surprise that the present tense is the one that you would encounter most frequently. In order to express the present continuous, you add <em>đang</em> before the verb as in the following example.</p>
+<p>Present continuous:</p>
+<p>Iam learningVietnamese based on EnglishTôiđang họctiếng Việt dựa trên tiếng Anh</p>
+<p>The two remaining questions that need to be addressed are: how can we express the relative order of actions in relation to each other, which is expressed using the “perfect” tenses in English? And the second question is about redundancy: why is there still the past simple and future simple tenses in Vietnamese as mentioned above, if the notion of time is implicitly indicated by the circumstance?</p>
+<p>In order to address the first question, let’s again use a concrete example:</p>
+<p><em>When I came home, she had gone jogging</em>.</p>
+<p>The use of the English past perfect tense <em>had gone</em> is to indicate that the action of “going” took place before the action “came home”.</p>
+<p>In Vietnamese, we’ll express this by using the word <em>rồi</em>, whose literal English translation is <em>already</em>. As such, we can rewrite this example in the Vietnamese way without the use of the past perfect tense by saying: <em>When I came home, she already went jogging</em>: this by the way is also an informal way of saying in English.</p>
+<p>Combine this with our knowledge that the notion of time, in this case the past, is not usually encoded directly in verbs but in the setting itself, we’ll take away the past tense before doing a word-to-word mapping to Vietnamese: <em>When I come home, she already goes jogging</em>.</p>
+<p>Translating the past perfect</p>
+<p>Original English sentenceWhen I came home, she had gone joggingRearranged for translationWhen I come home,shegoes joggingalreadyVietnamese translationKhi tôi về nhà,cô ấyđi chạy bộrồi</p>
+<p>Please take note that <em>rồi</em> must put after the verb phrase <em>go jogging</em> in Vietnamese.</p>
+<p>Secondly, let’s address the second question of why we still need the past simple and future simple tenses in Vietnamese, given our knowledge that the notion of time is already indicated by the setting and not through verbs?</p>
+<p>The first reason is that in isolated sentences, especially in writing, where the context doesn’t provide enough information about the time setting of actions (present, past or future), explicit use of the past simple or future simple is warranted.</p>
+<p>Another instance where these tenses are used is for emphasis purpose: when we want to emphasize (for example, in making promises) that something actually did happen or will definitely happen. The past simple and future simple tenses are expressed by prefixing verbs with “đã” and “sẽ”, respectively.</p>
+<p>Examples are given in the following table:</p>
+<p>Examples:</p>
+<p>Tôi(đã) đọcbài báo nàyhôm quaIreadthis articleyesterdayTôi(sẽ) về nhàvào lúc 5 giờchiều nayIwill come homeat five o’clockthis afternoon</p>
+<p>As indicated in the table, the use of <em>đã</em> and <em>sẽ</em> are optional with regards to expressing time. They are needed, however, if we want to put an emphasis on the time.</p>
+<p>Finally, it’s worth mentioning the very often used tense: the present perfect. As we’ve known, the two most prevalent uses of this tense is 1).to refer to actions that took place and have completed in the past without a definite point of time or 2). to indicate that an action, which took place some time in the past, is still continuing at the point of speaking.</p>
+<p>Consider the first example in the above table. If we just want to say <em>I’ve read this article</em>, the Vietnamese translation would be <em>Tôi đã đọc bài báo này</em>. In this usage of the present perfect, there is no mention of time so that the use of <em>đã</em> in the Vietnamese translation is compulsory because without it we would fail to express the notion of the past. We could also have said <em>Tôi đọc bài báo này rồi</em>, whose literal translation to English is <em>I read this article already</em>. The word <em>rồi</em>(“already”), while signalling that the action “read” already took place and completed, also puts emphasis on the completion aspect of the action.</p>
+<p>The second use of the present perfect tense, as in <em>I have lived here for 2 years</em>, is expressed in Vietnamese through the word <em>được</em>. In this usage, this word carries the meaning of <em>for</em>. The complete translation is given below.</p>
+<p>Example:</p>
+<p>Ihave livedherefor 2 yearsTôi(đã) sốngở đâyđược 2 năm</p>
+<p>We can see that in this usage, the word <em>đã</em> is optional. This is because the action <em>live</em> in the sentence is unmistakably understood to have started in the past based on meaning. Also, the word <em>được</em> in this usage also carries with it the notion of something that has lasted for some time.</p>
+<p>If the sentence has been written (more correctly) in the present perfect continuous tense: <em>I’ve been living here for 2 years</em> to put more emphasis on the time duration, the Vietnamese translation remains the same. Don’t you agree Vietnamese verb tenses are simpler? Agree…grudgingly?!?</p>
+<h3 id="vietnamese-phrasal-verbs"><a class="header" href="#vietnamese-phrasal-verbs">Vietnamese Phrasal verbs</a></h3>
+<p>Last but not least, it seems necessary to have a short discussion about phrasal verbs, which are used very extensively in (especially informal) English. To clarify, by “phrasal verbs”, we’re referring to such verbs as <em>look after</em> and <em>boost up</em>, which are comprised of a verb and a particle.</p>
+<p>The good news is that there is almost no notion of “phrasal verbs” in Vietnamese. The Vietnamese translation of <em>look after</em> is <em>chăm sóc</em>, which has two words but you should think of it as one “unit” verb. It’s definitely not a verb + a particle. To digress a little bit, some Vietnamese grammarians may argue that <em>chăm sóc</em> is one word, and not two words. For our purpose of learning Vietnamese, the answer doesn’t seem to make a lot of difference. And to make it familiar, we’ll stick to spaces as the demarcating unit of words, as in English. In this light, we’ll say <em>chăm sóc</em> is a unit verb made up of two words.</p>
+<p>Certainly, there are Vietnamese equivalents of English prepositions such as <em>in</em> and <em>on</em>; but they are not combined with verbs to form phrasal verbs. They can, however, be used compositionally with verbs to add meaning. For instance, consider the English sentence <em>He’s walking up the staircase</em>.</p>
+<p>Preposition example:</p>
+<p>Heis walkingupthe staircaseAnh tađang đilêncầu thang</p>
+<p>We can see that <em>up</em> is used to indicate the direction of the verb <em>walk</em> and there is no special meaning when combining <em>walk</em> with <em>up</em>. The Vietnamese translation is therefore a combination of the translation of <em>walk</em>, which is <em>đi</em>, and that of <em>up</em>: <em>lên</em>.</p>
+<p>So much for our discussion on verbs. Let’s review the gist of this lesson.</p>
+<h3 id="summary-1"><a class="header" href="#summary-1">Summary</a></h3>
+<p>This lesson on Verbs has demonstrated the simplicity of Vietnamese Verb tenses. In particular, we’ve learned:</p>
+<ul>
+<li>The notion of time is expressed either implicitly in the context or explicitly through time expressions, not in verb tenses.</li>
+<li>The two most frequently used tenses in Vietnamese are the present simple and the present continuous.</li>
+<li>There is no notion of “phrasal verbs” in Vietnamese</li>
+<li>Though Vietnamese verbs may consist of two or more words, they should be treated as a unit in that the verb’s meaning can not be immediately derived from constituent words’ meanings.</li>
+<li>There is no conjugation for third-person subject. This is in accord with the general rule we’ve previously learned: there is no inflection of any kind on Vietnamese words.</li>
+</ul>
+<p>If you have questions related to this post, please comment below.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vietnamese-adjectives--yourvietnamese"><a class="header" href="#vietnamese-adjectives--yourvietnamese">Vietnamese adjectives – YourVietnamese</a></h1>
+<p>In this lesson, we’re going to learn about the usage of <em>adjectives in Vietnamese</em>. As the primary role of adjectives is to modify nouns, it’s quite important that you have finished the <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-nouns/">lesson on nouns</a> before this lesson.</p>
+<h3 id="position-of-vietnamese-adjectives"><a class="header" href="#position-of-vietnamese-adjectives">Position of Vietnamese Adjectives</a></h3>
+<p>If you can still recall from the lesson on Vietnamese sentence structure, you have learned that adjectives are put after the nouns they modify. For instance, <em>I bought this interesting book yesterday</em> is translated into <em>I bought book interesting this yesterday</em>.</p>
+<p>Example:</p>
+<p>Original English sentenceI bought this interesting book yesterday.Rearanged for translationIboughtbookinterestingthisyesterdayVietnamese translationTôimuaquyển sáchthú vịnàyhôm qua</p>
+<p>We’ve learned in the <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-nouns/">lesson on Nouns</a> that <em>this</em> is positioned after the nouns it modifies in Vietnamese. Now, with the presence of adjectives, the adjective and the noun forms a noun phrase and <em>này</em>(“this”) is therefore put after the adjective. So, a small formula to summarise this is:</p>
+<h4 id="position-of-adjectives-in-vietnamese"><a class="header" href="#position-of-adjectives-in-vietnamese">Position of Adjectives in Vietnamese</a></h4>
+<p><a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-nouns/#measure-words">Measure word</a> + Noun + Adjectives + <em>này</em>(“this”)/ <em>kia</em>(“that”)</p>
+<p>Let’s now capitalise on this knowledge about positions of adjectives to translate the phrase <em>this book cover</em>. Given that <em>cover</em> translates into <em>bìa</em> and we have already known that <em>book</em> translates into <em>sách</em>, <em>this</em> translates into <em>này</em>, what’s your translation for the phrase?</p>
+<p>If your translation is <em>sách bìa này</em> or <em>quyển sách bìa này</em> or the likes, I believe you understand the materials well so far although it’s not the correct answer yet. Let’s ask a couple of questions to clarify the translation process: what’s the main noun in this phrase? In other words, are we talking about book or cover? It’s <em>cover</em>, right? Then we need to find out the measure word for this principal noun. It’s <em>cái</em>.</p>
+<p>The next question: <em>book</em> functions like an adjective in that it modifies the main noun <em>cover</em>, doesn’t it? Then, our formula right above gives us the following translation:</p>
+<p>Translation:</p>
+<p>Measure word“cover”“book”“this”Cáibìasáchnày</p>
+<p>Everything is clear so far? …Let’s move on to talk about inflections on adjectives.</p>
+<h3 id="inflections-on-vietnamese-adjectives"><a class="header" href="#inflections-on-vietnamese-adjectives">Inflections on Vietnamese Adjectives</a></h3>
+<p>One of the most interesting aspect of adjectives in English is that they can change meaning through inflections.</p>
+<p>For example, the adjective <em>happy</em> can be negated by adding the prefix <em>un-</em> to form the negative-meaning word <em>unhappy</em>; the meaning of <em>honest</em> can be reverted through the use of the prefix <em>dis-</em> to form <em>dishonest</em>.</p>
+<p>In Vietnamese, however, this is not possible for adjectives, and other types of words as well.</p>
+<p>But there should be no issue with translating <em>unhappy</em> into Vietnamese as we can simply translate it as <em>not happy</em>.</p>
+<p>How about transforming adjectives into nouns, as in the noun <em>happiness</em>, which is derived by adding the suffix -ness to the adjective <em>happy?</em></p>
+<p>As there is no inflection whatsoever on Vietnamese words, we can’t apply a similar transformation. The way to make adjectives become nouns in Vietnamese is to add in front of them an appropriate “adj-to-noun” transformers such as <em>niềm</em>, <em>nỗi</em>, <em>sự</em>, etc. In our example, the word for <em>happy</em> is <em>niềm</em> so that <em>happiness</em> is translated into <em>niềm hạnh phúc</em>.</p>
+<p>To clarify the role of these transformers, consider the following mapping:</p>
+<p>niềmhạnh phúc-nesshappy</p>
+<p>This table clarifies that transformers such as “niềm”, “nỗi”, “cái”, “điều”, “sự”, … by themselves don’t have any meaning. They only transform the following word into the correct part-of-speech to follow the grammar.</p>
+<p>The difficulty here is that you need to learn which “transformer” is used for which kinds of adjectives. The good news (or bad news?) is that for most of the cases, an adjective can accept many different “transformers”: so remembering one of them will do.</p>
+<p>How about the suffix <em>-ly</em> that is added to many adjectives to make them become adverbs as in <em>happily</em>, <em>quickly</em>?</p>
+<p>The answer is short and simple: no change is needed to make adjectives become adverbs in Vietnamese! That is to say that <em>hạnh phúc</em>(“happy”) can be used as both an adjective (“happy”) and an adverb (“happily”).</p>
+<h3 id="summary-2"><a class="header" href="#summary-2">Summary</a></h3>
+<p>In this lesson, we’ve got to know the followings about Vietnamese adjectives:</p>
+<ul>
+<li>Adjectives are put after the nouns they modify. As a corollary, phrases of multiple nouns are translated into Vietnamese in reverse order.</li>
+<li>To make adjectives become nouns, add their appropriate “transformers” such as <em>sự</em>, <em>niềm</em>. Adjectives in Vietnamese also function as adverbs.</li>
+</ul>
+<p>If you have questions related to this post, please comment below.</p>
+<p><img src="https://secure.gravatar.com/avatar/a66a16d35561de34a05d128fadf48d64?s=56&amp;d=mm&amp;r=g" alt="" /></p>
+<h2 id="post-navigation"><a class="header" href="#post-navigation">Post navigation</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="types-of-adjectives-in-vietnamese"><a class="header" href="#types-of-adjectives-in-vietnamese">Types of adjectives in Vietnamese</a></h1>
+<p>Distinguishing adjectives in Vietnamese is quite complicated. To clarify this issue, this lesson will help you better understand the types of adjectives in Vietnamese.</p>
+<h2 id="what-are-adjectives-in-vietnamese"><a class="header" href="#what-are-adjectives-in-vietnamese"><strong>What are adjectives in Vietnamese?</strong></a></h2>
+<p>Adjectives are words that describe characteristics or properties of things, activities, states. There are three types of characteristic adjectives: Feature adjectives, property adjectives, and state adjectives. Adjectives are usually placed after nouns: “Quả táo đỏ” (red apple).</p>
+<h2 id="classification-and-examples-of-adjectives-in-vietnamese"><a class="header" href="#classification-and-examples-of-adjectives-in-vietnamese"><strong>Classification and examples of adjectives in Vietnamese</strong></a></h2>
+<p>Adjectives in Vietnamese can be classified into:</p>
+<p><strong>Vietnamese****English</strong></p>
+<p>Tính từ chỉ phẩm chất:</p>
+<p>tốt          xấu          sạch            bẩn</p>
+<p>đúng      sai            hèn nhát</p>
+<p>Adjectives of qualities:</p>
+<p>good          bad          clean          dirty</p>
+<p>right           wrong     cowardly</p>
+<p>Tính từ chỉ màu sắc:</p>
+<p>xanh           đỏ           tím           vàng           xám</p>
+<p>đen             trắng       nâu          chàm</p>
+<p>Color adjectives:</p>
+<p>blue            red            purple            yellow            gray</p>
+<p>black           white        brown            indigo</p>
+<p>Tính từ chỉ kích thước:</p>
+<p>cao            thấp            rộng            hẹp            dài</p>
+<p>ngắn          to                nhỏ             bé</p>
+<p>khổng lồ   tí hon          mỏng          dày</p>
+<p>Adjectives of size:</p>
+<p>tall             short           wide             narrow             long</p>
+<p>short          big              small            small</p>
+<p>giant          tiny             thin              thick</p>
+<p>Tính từ chỉ hình dáng:</p>
+<p>vuông        tròn            cong</p>
+<p>thẳng         quanh co    thoi</p>
+<p>Adjectives for shape:</p>
+<p>square        round          curved</p>
+<p>straight      winding       rhombus</p>
+<p>Tính từ chỉ âm thanh:</p>
+<p>ồn              ồn ào          trầm</p>
+<p>bổng          vang</p>
+<p>Adjectives for sound:</p>
+<p>noisy          noisy            low</p>
+<p>high            resonant</p>
+<p>Tính từ chỉ hương vị:</p>
+<p>thơm          thối            hôi               cay            nồng</p>
+<p>ngọt           đắng           chua            tanh</p>
+<p>Adjectives for taste:</p>
+<p>fragrant       rotten         foul            spicy              strong</p>
+<p>sweet           bitter          sour           fishy</p>
+<p>Tính từ chỉ cách thức, mức độ:</p>
+<p>xa               gần             đủ               nhanh</p>
+<p>chậm          lề mề</p>
+<p>Adjectives showing manner and degree:</p>
+<p>far                near            enough</p>
+<p>fast               slow</p>
+<p>Tính từ chỉ lượng/dung lượng:</p>
+<p>nặng           nhẹ             đầy             vơi</p>
+<p>nông           sâu             vắng           đông</p>
+<p>Adjectives for volume/capacity:</p>
+<p>heavy           light            full             empty</p>
+<p>shallow        deep           empty        crowded</p>
+<p><img src="https://learnvietnamese.com.vn/uploads/types-of-adjectives-in-vietnamese-5.jpg" alt="adjective in vietnamese" /></p>
+<p><em>Lemon is sour</em></p>
+<h3 id="vietnamese-adjectives-indicating-characteristics"><a class="header" href="#vietnamese-adjectives-indicating-characteristics"><strong>Vietnamese adjectives indicating characteristics</strong></a></h3>
+<p>A characteristic is a distinctive feature of something (can be a person, an animal, a thing, a tree). Characteristics of an object are mainly external features (appearance) that we can directly perceive through eyes, ears, hands touching, nose smelling.</p>
+<p>These are its own features, its own look of color, shapes, shapes, sounds, etc. of things. The characteristics of an object can also be internal characteristics that can be recognized through observation, inference, generalization. Those are the characteristics of a person's temperament, psychology, personality, durability, value of an object... But mostly it will be more in favor of external characteristics.</p>
+<p>Tính từ chỉ đặc điểm bên ngoài: xinh, đẹp, cao, thấp, rộng, hẹp, xanh, đỏ,</p>
+<p>(Adjectives indicating external characteristics: pretty, beautiful, tall, short, wide, narrow, blue, red)</p>
+<p>Ex:</p>
+<p>Cô gái kia cao quá!</p>
+<p>(That girl is so tall!)</p>
+<p>Lá cây chuyển vàng vào mùa thu.</p>
+<p>(The leaves turn yellow in the fall.)</p>
+<p>Tính từ chỉ đặc điểm bên trong: chăm chỉ, ngoan, bền, chắc,…</p>
+<p>(Adjectives indicating inner characteristics: hard-working, obedient, durable, firm,...)</p>
+<p>Ex:</p>
+<p>Con gái tôi học lớp 7. Bé rất ngoan.</p>
+<p>(My daughter is in 7th grade. She is very good.)</p>
+<p>Cái vali này rất nhẹ.</p>
+<p>(This suitcase is very light.)</p>
+<p><img src="https://learnvietnamese.com.vn/uploads/types-of-adjectives-in-vietnamese-1.jpg" alt="adjective in vietnamese" /></p>
+<p><em>'Cao' in Vietnamese means 'tall'</em></p>
+<h3 id="adjectives-show-the-nature-of-things-or-subjects-in-vietnamese"><a class="header" href="#adjectives-show-the-nature-of-things-or-subjects-in-vietnamese"><strong>Adjectives show the nature of things or subjects in Vietnamese</strong></a></h3>
+<p>This is also to indicate specific characteristics of things and phenomena. Including social nature, life phenomenon or nature.</p>
+<p>This adjective mainly expresses inner qualities. Things that we cannot see, see, touch, or smell. But we have to observe, analyze, and synthesize to know. There are the following common adjectives: Tốt, xấu, ngoan, hư, nặng ,nhẹ, sâu sắc, thân thiện, vui vẻ, hiệu quả, thiết thực, dễ gần, hào phóng, lười biếng…</p>
+<p><strong>Examples of adjectives of character</strong></p>
+<p>Adjectives of character are a characteristic used to distinguish one thing from another.</p>
+<p>Ex: Tính chất của nước là không màu không mùi, không vị.</p>
+<p>(Water is colorless, odorless and tasteless.)</p>
+<p>Tính chất của metan là nhẹ, không màu, không mùi.</p>
+<p>(Methane is a gas, colorless and odorless.)</p>
+<p>Buổi đi chơi hôm nay rất thú vị.</p>
+<p>(Today's outing was very interesting.)</p>
+<p>Cô ấy rất lười biếng.</p>
+<p>(She is very lazy.)</p>
+<h3 id="vietnamese-adjectives-for-status"><a class="header" href="#vietnamese-adjectives-for-status"><strong>Vietnamese adjectives for status</strong></a></h3>
+<p>Status adjectives are words that indicate the state of a person, thing, or phenomenon in a short or long period of time. This word expresses objective phenomena in life. Some common state adjectives: hôn mê, ốm, khỏe, khổ, đau, yên tĩnh, ồn ào…</p>
+<p>Ex:</p>
+<p>Thành phố thật náo nhiệt.</p>
+<p>(What a Bustling city.)</p>
+<p>Vì bị ốm nên tôi không thể đi học được.</p>
+<p>(Because I was sick, I couldn't go to school.)</p>
+<p><img src="https://learnvietnamese.com.vn/uploads/types-of-adjectives-in-vietnamese-3.jpg" alt="adjective in vietnamese" /></p>
+<p><em>Vui vẻ is also a adjective for status</em></p>
+<h3 id="adjectives-describe-vietnamese-personality"><a class="header" href="#adjectives-describe-vietnamese-personality"><strong>Adjectives describe Vietnamese personality</strong></a></h3>
+<p>Regarding human personality, there are some adjectives that describe Vietnamese personality such as:</p>
+<p><strong>Vietnamese****English</strong>  Chăm chỉ - Lười biếng  Industrious - ​​Lazy  Thông minh - Ngu dốt  Smart - Stupid  Nhanh nhẹn - Chậm  Quick - Slow  Cẩn thận, chu đáo - Cẩu thả  Careful, Attentive - Sloppy  Thật thà - Lươn lẹo  Honesty - Dishonesty  Tốt bụng - Xấu tính  Kind - Mean  Dễ gần - khó gần  Friendly - Unfriendly  Điềm đạm - Nóng nảy, cộc cằn  Calm - Hot tempered, grumpy  Dễ tính - Khó tính  Easy - Strict  Niềm nở - Lãnh đạm  Cheerfulness - Apathetic  Ham học - Lười học  Eager to learn - Lazy to study</p>
+<h3 id="regarding-taste-vietnamese-has-some-adjectives"><a class="header" href="#regarding-taste-vietnamese-has-some-adjectives"><strong>Regarding taste, Vietnamese has some adjectives</strong></a></h3>
+<p><strong>Vietnamese****English</strong>  mặn vừa phải - nhạt, lạt  salty, moderate - light, bland</p>
+<p>ngọt            đắng            cay            chát            nóng</p>
+<p>lạnh            nồng            chua          tanh</p>
+<p>sweet             bitter             spicy             acrid             hot</p>
+<p>cold               hot                 sour              fishy</p>
+<p>thơm         thối              thum thủm</p>
+<p>thoang thoảng             nồng nặc</p>
+<p>fragrant          rotten            thumping</p>
+<p>faint               intense</p>
+<h3 id="adjectives-indicate-levels-in-vietnamese"><a class="header" href="#adjectives-indicate-levels-in-vietnamese"><strong>Adjectives indicate levels in Vietnamese</strong></a></h3>
+<p><strong>Vietnamese****English</strong></p>
+<p>cao - thấp - vừa phải</p>
+<p>nặng - nhẹ</p>
+<p>nghiêm trọng - nhẹ</p>
+<p>bình thường, nhanh - chậm</p>
+<p>high - low - moderate</p>
+<p>heavy - light</p>
+<p>severe - mild</p>
+<p>normal, fast - slow</p>
+<p>This lesson has shown different kinds of adjectives in Vietnamese. Hopefully that will help you to improve your grammar skills.</p>
+<p><strong>Tags: learn Vietnamese, learn Vietnamese grammar, learn Vietnamese adjectives, learn Vietnamese for beginners, learn Vietnamese structure, learn Vietnamese words, learn Vietnamese, type of adjectives in Vietnamese</strong></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vietnamese-basic-grammar-sentence-structure--yourvietnamese"><a class="header" href="#vietnamese-basic-grammar-sentence-structure--yourvietnamese">Vietnamese basic grammar: sentence structure – YourVietnamese</a></h1>
+<p>The <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-language-introduction/">Introduction to Vietnamese Language</a> has introduced you the most important characteristics of the language as a whole. In this very first lesson of the Express Grammar Course, we would learn <em>the most important grammatical features of Vietnamese Language</em>, especially when compared with English.</p>
+<h2 id="vietnamese-sentence-structure"><a class="header" href="#vietnamese-sentence-structure">Vietnamese Sentence Structure</a></h2>
+<p>In this section, we’ll learn how Vietnamese words are arranged to form meaning. Let’s get started with the classical example: <em>I love you</em>. How is that expressed in Vietnamese? It’s <em>Anh yêu em</em>. Let’s see the break-downs:</p>
+<p>Example:</p>
+<p>VietEnglishAnhIt means: <em>I</em>, also implying that you’re older or more senior.</p>
+<p>In Vietnamese, we’ll use different words for <em>I</em>, depending on our relationship with the listener (whether we are older or more senior). The specific word choice also varies with different regions of Vietnam.</p>
+<p>YêuThis means: <em>love</em>.EmThe word means: <em>you</em>. This word implies that you are younger, less senior. ( <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-pronouns/">More on pronouns</a>)</p>
+<p>Please don’t remember all the details above, it’s just for reading purpose. What should be remembered, however, is this:</p>
+<h4 id="vietnamese-grammar-rule-1"><a class="header" href="#vietnamese-grammar-rule-1">Vietnamese Grammar Rule 1</a></h4>
+<p>Vietnamese Language has the same sentence structure as English:</p>
+<p>Subject + Verb + Object (or SVO for short).</p>
+<p>Did you see it? <em>Anh</em>(“I”: Subject) + <em>yêu</em>(“love”: Verb) + <em>em</em>(“you”: Object). This is one of the most fundamental rules of Vietnamese grammar, or of any language for that matter. The next time you learn a new language, it’s good to ask from the very beginning: what’s the basic sentence structure of this language? (For a language with a different sentence structure, Japanese is a good example).</p>
+<h2 id="position-of-vietnamese-adverbs"><a class="header" href="#position-of-vietnamese-adverbs">Position of Vietnamese Adverbs</a></h2>
+<p>Now, let’s try to add some more romance to this sentence. How about <em>I love you a lot</em>? The Vietnamese equivalent is <em>Tôi yêu em nhiều</em>. The first part remains the same and the added part is <em>nhiều</em> for <em>a lot</em>: <em>a lot</em> &lt;–&gt; <em>nhiều</em>. And this gives us a general rule about position of adverbs (eg. often, fast, beautifully):</p>
+<h4 id="vietnamese-grammar-rule-2"><a class="header" href="#vietnamese-grammar-rule-2">Vietnamese Grammar Rule 2</a></h4>
+<p>In Vietnamese, as in English, adverbs are positioned after the verbs they modify.</p>
+<p>In English, some adverbs, such as <em>rather</em>, are positioned before the verb as in this sentence: <em>I rather like it</em>. This is also the case in Vietnamese and indeed, the translation of that sentence is: <em>Anh(I) khá(rather) thích(like) nó(it)</em>.</p>
+<p>The other rule is that if verbs require objects, adverbs are then positioned after the objects, as in English. As we don’t say <em>I love a lot you</em> in English, we don’t say <em>Anh yêu nhiều em</em> (*). The correct Vietnamese translation is <em>Anh yêu em nhiều</em>. The sentence structure we have learned so far is then: Subject + Verb (+ Object) + Adverbs.</p>
+<p>Example:</p>
+<p>In factyouareverybeautifulQuả thậtem_No translation needed_rấtđẹp</p>
+<p>Apart from the absence of the translation of the verb <em>to be</em>, this is almost a direct one-to-one word mapping from English to Vietnamese. How similar Vietnamese is to English! Don’t you think so? The absence of the translation of the verb <em>to be</em> is explained in the following rule:</p>
+<h4 id="vietnamese-grammar-rule-3"><a class="header" href="#vietnamese-grammar-rule-3">Vietnamese Grammar Rule 3</a></h4>
+<p>In Vietnamese, adjectives don’t go with <em>to be</em>.</p>
+<p>No <em>to be</em> with adjectives? Yes, so the Vietnamese way of saying <em>She’s beautiful</em> is simply <em>She beautiful</em>!</p>
+<p>The astute readers would then ask: Then, how do we change it to a question: there is no <em>to be</em> to be inverted to the front of the sentence as in English! That’s a really good question and the answer is that we’ll use a question marker combined with a rising in intonation to express questions in Vietnamese. This way of asking questions is shared by Chinese and French as well.</p>
+<p>We’ve learned about verbs, adverbs and adjectives. Now, we’ll conclude this overview of Vietnamese Grammar with the usage of nouns through another compliment: <em>You have a very beautiful voice</em>. What’s the Vietnamese translation? Let’s first break this English sentence into its major components:</p>
+<p><em>You</em>(Subject) + <em>have</em>(Verb) + <em>a very beautiful voice</em>(Object). We’ve learned above that Vietnamese also shares the same Subject + Verb + Object (or SVO) ordering. So how does the sentence structure of the Vietnamese translation look like? Yes, it’s the same!</p>
+<p>Translation mapping:</p>
+<p>Youhavea very beautiful voiceEmcómột giọng nói rất hay.</p>
+<p>Let’s take a closer look at the translation of the phrase <em>very beautiful voice</em>: <em>giọng nói rất hay</em>.</p>
+<p>giọng nóirất hayvoicevery beautiful</p>
+<p>As you can observe, the phrase <em>rất hay</em>(“very beautiful”) is positioned after <em>giọng nói</em>(“voice”), which is different from English. And this gives us another general rule:</p>
+<h4 id="vietnamese-grammar-rule-4"><a class="header" href="#vietnamese-grammar-rule-4">Vietnamese Grammar Rule 4</a></h4>
+<p>In Vietnamese, adjectives are positioned after the nouns they modify.</p>
+<p>Another observation that you might have had is that the adverb of intensity <em>very</em> is positioned before the adjective <em>beautiful</em>: <em>rất</em>(“very”) <em>đẹp</em>(“beautiful”), as in English. This is aslo a general rule: adverbs are put before adjectives they modify, just as in English. For instance, <em>She is very smart</em> would translate into <em>Cô ta rất thông minh.</em> Note that <em>rất (very)</em> occurs before the adjective <em>thông minh (smart)</em>.</p>
+<p>Now, let’s review what we’ve learned by translating this snippet <em>You are very beautiful</em>. Let’s go very slowly, though I know that you can do it much faster, to make it very sure that everything is clear and in order.</p>
+<p><em>You</em> + <em>are</em>(“to be”) + <em>very</em>(adverb) + <em>beautiful</em>(adjective). The phrase <em>very beautiful</em> is an adjectival phrase consisting of the main adjective <em>beautiful</em> and the adverb of intensity <em>very</em>. The Vietnamese translation of this phrase, as we’ve already discussed, has the same order of: <em>rất</em>(“very”) + <em>đẹp</em>(“beautiful”).</p>
+<p>We’ve also learned that adjectives in Vietnamese aren’t accompanied by <em>to be</em>. Therefore, the Vietnamese version would be <em>You very beautiful</em>. Putting everything together, we reach the correct translation: <em>Em rất đẹp</em>. If you got it right, congratulations!</p>
+<p>That’s enough for an overview. I hope you have enjoyed the reading and learning so far.</p>
+<h2 id="summary-3"><a class="header" href="#summary-3">Summary</a></h2>
+<p>We’ve quickly gone through the most important points in Vietnamese Grammar in this overview. The take-away points are:</p>
+<ul>
+<li>Vietnamese is similar to English in the general sentence structure, which is: Subject + Verb (+ Object) + Adverbs.</li>
+<li>In Vietnamese, as in English, adverbs are put after the verbs they modify.</li>
+<li>In Vietnamese, adjectives aren’t prefixed with <em>to be</em>.</li>
+<li>In Vietnamese, adjectives are positioned after the nouns they modify.</li>
+</ul>
+<p>You would probably now agree that Vietnamese and English Grammar are very similar. The last two points about adjectives in the summary list above are two of the (few) most significant grammatical differences. Everything else can be assumed to be the same for now.</p>
+<p>If you have questions related to this post, please comment below.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="simple-sentences-in-vietnamese-grammar---talkpal"><a class="header" href="#simple-sentences-in-vietnamese-grammar---talkpal">Simple Sentences in Vietnamese Grammar - Talkpal</a></h1>
+<h2 id="understanding-simple-sentences-in-vietnamese-grammar"><a class="header" href="#understanding-simple-sentences-in-vietnamese-grammar">Understanding Simple Sentences in Vietnamese Grammar</a></h2>
+<p>Mastering the art of constructing simple sentences in Vietnamese grammar is an essential skill for beginners <a href="https://talkpal.ai/talkpal-for-education/">learning</a> the language. In this article, we will explore the structure and components of simple sentences, as well as providing useful examples and tips to help you build fluency in Vietnamese.</p>
+<h2 id="components-of-a-simple-sentence-in-vietnamese"><a class="header" href="#components-of-a-simple-sentence-in-vietnamese">Components of a Simple Sentence in Vietnamese</a></h2>
+<p>In order to form a basic Vietnamese sentence, there are three core components that must be present:</p>
+<ul>
+<li><strong>Subject:</strong> The person, animal, or object that is performing the action in the sentence or that the sentence describes.</li>
+<li><strong>Verb:</strong> The action or state of being that is being expressed.</li>
+<li><strong>Object:</strong> The person, animal, or object that is affected by the action of the verb.</li>
+</ul>
+<p>It is important to note that the word order in Vietnamese typically follows the Subject-Verb-Object (SVO) pattern, much like English. However, there are some differences in the way adjectives and adverbs are placed within a sentence, which will be discussed later in the article.</p>
+<h2 id="examples-of-simple-sentences-in-vietnamese"><a class="header" href="#examples-of-simple-sentences-in-vietnamese">Examples of Simple Sentences in Vietnamese</a></h2>
+<p>Now that we have an understanding of the basic components of simple sentences in Vietnamese grammar, let’s look at some examples:</p>
+<ul>
+<li>Tôi ăn bánh mì. (“I eat bread.”)</li>
+<li>Chúng tôi học tiếng Việt. (“We learn Vietnamese.”)</li>
+<li>Con mèo đuổi con chuột. (“The cat chases the mouse.”)</li>
+</ul>
+<p>In each of these examples, we can clearly identify the subject, verb, and object, as well as the SVO word order. It is crucial to become familiar with this structure, as it serves as the foundation for more complex sentences.</p>
+<h2 id="using-adjectives-in-simple-sentences"><a class="header" href="#using-adjectives-in-simple-sentences">Using Adjectives in Simple Sentences</a></h2>
+<p>One of the essential aspects of Vietnamese grammar is understanding how to use adjectives effectively in simple sentences. Unlike English, where adjectives typically precede the noun, in Vietnamese, adjectives follow the noun they describe. This placement is important for accurately conveying meaning within a sentence. Here are a few examples:</p>
+<ul>
+<li>Cô gái xinh đẹp. (“The beautiful girl.”)</li>
+<li>Ngôi nhà lớn. (“The big house.”)</li>
+<li>Quả táo đỏ. (“The red apple.”)</li>
+</ul>
+<h2 id="integrating-adverbs-into-simple-sentences"><a class="header" href="#integrating-adverbs-into-simple-sentences">Integrating Adverbs into Simple Sentences</a></h2>
+<p>Similarly, adverbs play an important role in enriching simple sentences in Vietnamese grammar. Adverbs are typically placed after the verb they modify, sometimes with the additional word “rất” (“very” in English) for emphasis. Here are some examples of adverbs in Vietnamese sentences:</p>
+<ul>
+<li>Anh ấy nói chuyện nhanh. (“He talks quickly.”)</li>
+<li>Tôi rất thích ăn phở. (“I really like eating pho.”)</li>
+<li>Chúng tôi mua sắm thường xuyên. (“We shop frequently.”)</li>
+</ul>
+<h2 id="important-tips-for-simple-sentences-in-vietnamese"><a class="header" href="#important-tips-for-simple-sentences-in-vietnamese">Important Tips for Simple Sentences in Vietnamese</a></h2>
+<p>To enhance your understanding and usage of simple sentences in Vietnamese, here are a few key tips:</p>
+<ol>
+<li>Consistently practice the SVO word order, ensuring that you place adjectives and adverbs in the correct positions within a sentence.</li>
+<li>Gain familiarity with common verbs and their conjugations to increase your fluency in constructing simple sentences.</li>
+<li>Memorize a variety of adjectives and adverbs to enrich your vocabulary and enhance your ability to express nuanced ideas and emotions.</li>
+</ol>
+<p>By studying and practicing the principles outlined in this article, you will develop a solid foundation in constructing simple sentences in Vietnamese grammar. As you continue to learn and grow in your language skills, you will build upon this foundation to confidently engage in more complex and meaningful conversations in Vietnamese.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="compound-sentences-in-vietnamese-grammar---talkpal"><a class="header" href="#compound-sentences-in-vietnamese-grammar---talkpal">Compound Sentences in Vietnamese Grammar - Talkpal</a></h1>
+<h2 id="understanding-compound-sentences-in-vietnamese-grammar"><a class="header" href="#understanding-compound-sentences-in-vietnamese-grammar">Understanding Compound Sentences in Vietnamese Grammar</a></h2>
+<p><strong>Compound sentences</strong> are an essential aspect of <a href="https://talkpal.ai/learn-vietnamese/">Vietnamese</a> grammar, as they allow speakers to express more complex thoughts and ideas. In this article, we will explore the various types of compound sentences in Vietnamese, as well as the rules and guidelines for constructing them correctly.</p>
+<h2 id="types-of-compound-sentences-in-vietnamese"><a class="header" href="#types-of-compound-sentences-in-vietnamese">Types of Compound Sentences in Vietnamese</a></h2>
+<p>There are several types of compound sentences in <a href="https://talkpal.ai/vietnamese-grammar/">Vietnamese grammar</a>. These include:</p>
+<ol>
+<li><strong>Coordinate Compound Sentences:</strong> Formed by connecting two or more simple sentences with coordinating conjunctions such as và (and), nhưng (but), hoặc (or), and vậy (so).</li>
+<li><strong>Subordinate Compound Sentences:</strong> Composed of a main clause and one or more subordinate clauses. The subordinate clause is often introduced by a subordinating conjunction like khi (when), nếu (if), để (in order to), or vì (because).</li>
+<li><strong>Correlative Compound Sentences:</strong> Formed by connecting two simple sentences using correlative conjunction pairs such as cũng…cũng (both…and), mặc dù…thì (although…still), and hoặc…hoặc (either…or).</li>
+</ol>
+<h2 id="constructing-coordinate-compound-sentences"><a class="header" href="#constructing-coordinate-compound-sentences">Constructing Coordinate Compound Sentences</a></h2>
+<p>Coordinate compound sentences are formed by connecting two or more simple sentences with coordinating conjunctions. The main rule when creating these sentences is that the independent clauses being connected should be logically related and of equal importance. For example:</p>
+<p>– Tôi ăn sáng <strong>và</strong> đi học. (I have breakfast <strong>and</strong> go to school.)</p>
+<p>In the above sentence, the coordinating conjunction <strong>và</strong> (and) connects two independent clauses, “Tôi ăn sáng” (I have breakfast) and “đi học” (go to school). Both clauses share equal importance and are logically connected, making it a correct coordinate compound sentence.</p>
+<h2 id="constructing-subordinate-compound-sentences"><a class="header" href="#constructing-subordinate-compound-sentences">Constructing Subordinate Compound Sentences</a></h2>
+<p>Subordinate compound sentences consist of a main clause and one or more subordinate clauses. The subordinate clause often starts with a subordinating conjunction, indicating its dependent relationship with the main clause. For example:</p>
+<p>– Tôi sẽ đi chơi <strong>khi</strong> học xong bài. (I will go out <strong>when</strong> I finish studying.)</p>
+<p>In this sentence, the main clause is “Tôi sẽ đi chơi” (I will go out) and the subordinate clause is “khi học xong bài” (when I finish studying), introduced by the subordinating conjunction <strong>khi</strong> (when). The subordinate clause provides additional information specifying the condition under which the main clause will occur.</p>
+<h2 id="constructing-correlative-compound-sentences"><a class="header" href="#constructing-correlative-compound-sentences">Constructing Correlative Compound Sentences</a></h2>
+<p>Correlative compound sentences connect two simple sentences using correlative conjunction pairs to show a relationship between the clauses. Unlike coordinating conjunctions, these conjunctions come in pairs, with one appearing in each clause. For example:</p>
+<p>– <strong>Cũng</strong> mưa <strong>cũng</strong> nắng, họ vẫn đi làm. ( <strong>Both</strong> rain <strong>and</strong> sunshine, they still go to work.)</p>
+<p>Here, the correlative conjunction pair <strong>cũng…cũng</strong> (both…and) is used to highlight the relationship between “mưa” (rain) and “nắng” (sunshine) in the context of going to work.</p>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>To master compound sentences in Vietnamese grammar, it is essential to understand the various types and their unique construction rules. By practicing and applying these guidelines, you will enhance your ability to express complex ideas and thoughts effectively in Vietnamese.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="complex-sentences-in-vietnamese-grammar---talkpal"><a class="header" href="#complex-sentences-in-vietnamese-grammar---talkpal">Complex Sentences in Vietnamese Grammar - Talkpal</a></h1>
+<h2 id="understanding-complex-sentences-in-vietnamese-grammar"><a class="header" href="#understanding-complex-sentences-in-vietnamese-grammar">Understanding Complex Sentences in Vietnamese Grammar</a></h2>
+<p><strong>Complex sentences</strong> play a crucial role in the <a href="https://talkpal.ai/learn-vietnamese/">Vietnamese</a> language, contributing to the depth and richness of communication. The proper use of complex sentences allows speakers to convey nuanced messages and create well-structured narratives. This article explores various aspects of complex sentences in <a href="https://talkpal.ai/vietnamese-grammar/">Vietnamese grammar</a>, including their structural components, essential types, and practical examples to assist language learners in mastering this essential feature of the Vietnamese language.</p>
+<h2 id="structural-components-of-vietnamese-complex-sentences"><a class="header" href="#structural-components-of-vietnamese-complex-sentences">Structural Components of Vietnamese Complex Sentences</a></h2>
+<p>The Vietnamese language allows a variety of complex sentence structures involving dependent and independent clauses.</p>
+<p><strong>Dependent Clauses</strong> are clauses that cannot stand alone as complete sentences. These clauses must be connected to an independent clause to express a complete thought.</p>
+<p><strong>Independent Clauses</strong> can stand alone as complete sentences, expressing a complete thought without requiring attachment to another clause.</p>
+<p>Connecting these clauses appropriately results in complex sentences.</p>
+<h2 id="types-of-complex-sentences-in-vietnamese-grammar"><a class="header" href="#types-of-complex-sentences-in-vietnamese-grammar">Types of Complex Sentences in Vietnamese Grammar</a></h2>
+<p>Vietnamese complex sentences can be categorized into multiple types, depending on the purpose and relationship between the clauses. Some widely used types include:</p>
+<p><strong>1. Subordinating Complex Sentences</strong>: These sentences use subordinating conjunctions to link the dependent clause to the independent clause, signifying a relationship between them. Common subordinating conjunctions in Vietnamese include “vì” (because), “khi” (when), “để” (so that), and “nếu” (if).</p>
+<p>Example: <em>Đỗ công tác tại Việt Nam <strong>vì</strong> anh muốn nghiên cứu văn hóa địa phương.</em></p>
+<p>(Do is working in Vietnam <strong>because</strong> he wants to study the local culture.)</p>
+<p><strong>2. Coordinate Complex Sentences</strong>: These sentences involve an independent clause connected to another independent clause using coordinating conjunctions such as “và” (and), “hoặc” (or), and “nhưng” (but).</p>
+<p>Example: <em>Chị Lan đi chợ <strong>và</strong> anh Nam ở nhà nấu cơm.</em></p>
+<p>(Sister Lan goes to the market <strong>and</strong> brother Nam stays home and cooks.)</p>
+<p><strong>3. Compound-Complex Sentences</strong>: These sentences include at least two independent clauses and one or more dependent clauses. The clauses can be connected using a combination of subordinating and coordinating conjunctions.</p>
+<p>Example: <em>Bạn Hà mất ví <strong>khi</strong> đi xe buýt <strong>nhưng</strong> sau đó người lái xe trả lại.</em></p>
+<p>(Ha lost her wallet <strong>when</strong> she took the bus, <strong>but</strong> the driver later returned it.)</p>
+<h2 id="using-connectors-in-vietnamese-complex-sentences"><a class="header" href="#using-connectors-in-vietnamese-complex-sentences">Using Connectors in Vietnamese Complex Sentences</a></h2>
+<p><strong>Connectors</strong> are essential for creating cohesion and establishing relationships between clauses in complex sentences. Among the most common Vietnamese connectors are:</p>
+<p>1. <strong>Cause and Effect</strong>: “vì”, “do”, “bởi vì” (because)</p>
+<p>2. <strong>Contrast</strong>: “tuy”, “tuy nhiên”, “nhưng” (however, but)</p>
+<p>3. <strong>Sequence</strong>: “rồi”, “sau đó” (then, after that)</p>
+<p>4. <strong>Condition</strong>: “nếu”, “nếu không”, “giả sử” (if, unless, supposing)</p>
+<p>5. <strong>Purpose</strong>: “để”, “cho”, “mục đích” (for, so that, in order to)</p>
+<h2 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h2>
+<p><strong>Complex sentences</strong> are a vital aspect of Vietnamese grammar, providing versatility and depth to written and spoken communication. By understanding the structure, types, and appropriate usage of dependent and independent clauses, language learners can enhance their ability to express complex thoughts effectively and master the intricacies of Vietnamese grammar. Practice and exposure to authentic Vietnamese materials will further solidify an individual’s understanding of this vital language feature.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="passive-voice-in-vietnamese-grammar---talkpal"><a class="header" href="#passive-voice-in-vietnamese-grammar---talkpal">Passive Voice in Vietnamese Grammar - Talkpal</a></h1>
+<h2 id="understanding-passive-voice-in-vietnamese-grammar"><a class="header" href="#understanding-passive-voice-in-vietnamese-grammar">Understanding Passive Voice in Vietnamese Grammar</a></h2>
+<p>Passive voice plays a significant role in <a href="https://talkpal.ai/learn-vietnamese/">Vietnamese</a> grammar, just as it does in other languages. By employing passive voice, a sentence focuses on the recipient’s action rather than the performer. This article will delve into the intricacies of passive voice in Vietnamese, exploring its structures, usage, and applications, ultimately providing a comprehensive guide to mastering this essential grammatical aspect.</p>
+<h2 id="structural-elements-of-passive-voice-in-vietnamese"><a class="header" href="#structural-elements-of-passive-voice-in-vietnamese">Structural Elements of Passive Voice in Vietnamese</a></h2>
+<p>In <a href="https://talkpal.ai/vietnamese-grammar/">Vietnamese grammar</a>, passive voice is constructed through the use of specific passive markers. While there are multiple such markers, the most common include:</p>
+<ul>
+<li><strong>được</strong>: Typically employed in positive sentences.</li>
+<li><strong>không được</strong>: Often used in negative sentences.</li>
+<li><strong>bị</strong>: Can be used in both positive and negative sentences, but generally conveys a negative tone.</li>
+<li><strong>bị chịu</strong>: Employed in cases of enduring or suffering.</li>
+</ul>
+<p>It is essential to recognize that each passive marker functions differently and imparts a distinct meaning to the sentence. Comprehending the subtle nuances of these markers is vital for accurate communication in Vietnamese.</p>
+<h2 id="formation-of-simple-passive-voice-sentences"><a class="header" href="#formation-of-simple-passive-voice-sentences">Formation of Simple Passive Voice Sentences</a></h2>
+<p>In Vietnamese grammar, passive voice sentences follow a straightforward structure:</p>
+<blockquote>
+<p>Subject + Passive Marker + Verb + (by + Agent)</p>
+</blockquote>
+<p>It is important to note that the agent, or the individual carrying out the action, is optional in passive voice sentences. Omitting the agent enhances the focus on the action and its recipient. Here are a few examples illustrating the application of passive voice in Vietnamese:</p>
+<ol>
+<li>Quyển sách <strong>được</strong> mua. (The book is bought.)</li>
+<li>Tôi <strong>bị</strong> đánh. (I am hit.)</li>
+<li>Cô ấy <strong>không được</strong> khen. (She is not praised.)</li>
+<li>Anh ấy <strong>bị chịu</strong> sự đau đớn. (He suffers pain.)</li>
+</ol>
+<h2 id="utilizing-passive-voice-in-complex-sentences"><a class="header" href="#utilizing-passive-voice-in-complex-sentences">Utilizing Passive Voice in Complex Sentences</a></h2>
+<p>Passive voice can be applied in more complex sentences through a series of additional techniques. We will take a closer look at three such strategies:</p>
+<h3 id="1-passive-voice-in-relative-clauses"><a class="header" href="#1-passive-voice-in-relative-clauses">1. Passive Voice in Relative Clauses</a></h3>
+<p>Passive voice can be integrated into relative clauses, which can be used for further describing the subject. Examine the following example:</p>
+<blockquote>
+<p>Người đàn ông <strong>mà</strong> tôi <strong>được</strong> gặp (The man I met)</p>
+</blockquote>
+<h3 id="2-passive-voice-in-dependent-clauses"><a class="header" href="#2-passive-voice-in-dependent-clauses">2. Passive Voice in Dependent Clauses</a></h3>
+<p>Similarly, passive voice can be employed in dependent clauses to provide more information about the subject or an object. Consider this example:</p>
+<blockquote>
+<p>Tôi biết rằng cô ấy <strong>được</strong> thăng chức. (I know that she is promoted.)</p>
+</blockquote>
+<h3 id="3-passive-voice-with-compound-verbs"><a class="header" href="#3-passive-voice-with-compound-verbs">3. Passive Voice with Compound Verbs</a></h3>
+<p>In cases where a compound verb is in use, the passive marker is placed before both verbs. This retains the verb combination while expressing the passive nature of the sentence. For instance:</p>
+<blockquote>
+<p>Nhà ấy <strong>được</strong> làm lại. (The house is renovated.)</p>
+</blockquote>
+<h2 id="conclusion-2"><a class="header" href="#conclusion-2">Conclusion</a></h2>
+<p>In conclusion, attaining fluency in Vietnamese requires a thorough understanding of passive voice structures and usage. This article has discussed the essential components of passive voice in Vietnamese, including the employment of passive markers, sentence construction, and integrating passive voice into complex sentences. By applying these principles, learners can communicate effectively in Vietnamese while focusing on the action and its recipient, ultimately refining their language prowess.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="là-vs-Ở---understanding-the-nuances-of-to-be-in-vietnamese---talkpal"><a class="header" href="#là-vs-Ở---understanding-the-nuances-of-to-be-in-vietnamese---talkpal">Là vs. Ở - Understanding the Nuances of "To Be" in Vietnamese - Talkpal</a></h1>
+<p>Understanding the intricacies of a new language is always a challenging yet rewarding journey. For learners of Vietnamese, one of the common hurdles is comprehending the proper usage of “to be” verbs, particularly when distinguishing between <strong>là</strong> and <strong>ở</strong>. Both words are essential but serve different purposes in sentences. This article aims to provide clarity on these nuances and help you become more proficient in using these terms correctly.</p>
+<h2 id="distinguishing-between-là-and-ở"><a class="header" href="#distinguishing-between-là-and-ở">Distinguishing Between <strong>là</strong> and <strong>ở</strong></a></h2>
+<p>In Vietnamese, both <strong>là</strong> and <strong>ở</strong> translate to the English verb “to be,” but their usage depends on the context.</p>
+<h3 id="là-the-identity-verb"><a class="header" href="#là-the-identity-verb"><strong>là</strong>: The Identity Verb</a></h3>
+<p><strong>là</strong> is used to link the subject of a sentence with a noun or pronoun that identifies or classifies the subject. It is comparable to the English “am,” “is,” or “are” when indicating identity or characteristics.</p>
+<p><strong>là</strong></p>
+<p>– Definition: To be (used to indicate identity or classification)</p>
+<p>– Vietnamese: là</p>
+<p>– Example: Anh ấy <strong>là</strong> giáo viên. (He <strong>is</strong> a teacher.)</p>
+<p>In this example, <strong>là</strong> connects the subject “Anh ấy” (He) with the noun “giáo viên” (teacher), indicating that being a teacher is an identity or characteristic of the subject.</p>
+<h3 id="ở-the-location-verb"><a class="header" href="#ở-the-location-verb"><strong>ở</strong>: The Location Verb</a></h3>
+<p>On the other hand, <strong>ở</strong> is used to indicate the location of the subject. It is similar to the English “am,” “is,” or “are” when specifying where someone or something is situated.</p>
+<p><strong>ở</strong></p>
+<p>– Definition: To be (used to indicate location)</p>
+<p>– Vietnamese: ở</p>
+<p>– Example: Tôi <strong>ở</strong> nhà. (I <strong>am</strong> at home.)</p>
+<p>Here, <strong>ở</strong> specifies the location of the subject “Tôi” (I), indicating that the subject is at home.</p>
+<h2 id="common-mistakes-and-how-to-avoid-them"><a class="header" href="#common-mistakes-and-how-to-avoid-them">Common Mistakes and How to Avoid Them</a></h2>
+<p>It is common for learners to confuse <strong>là</strong> and <strong>ở</strong> due to their shared translation in English. Let’s look at some typical mistakes and how to correct them.</p>
+<h3 id="incorrect-using-là-for-location"><a class="header" href="#incorrect-using-là-for-location">Incorrect: Using <strong>là</strong> for Location</a></h3>
+<p>Incorrect: Tôi <strong>là</strong> nhà. (I <strong>am</strong> house.)</p>
+<p>Correct: Tôi <strong>ở</strong> nhà. (I <strong>am</strong> at home.)</p>
+<p>In the incorrect sentence, <strong>là</strong> is used instead of <strong>ở</strong>, which leads to confusion as it implies an identity rather than a location. The correction uses <strong>ở</strong> to indicate the subject’s location correctly.</p>
+<h3 id="incorrect-using-ở-for-identity"><a class="header" href="#incorrect-using-ở-for-identity">Incorrect: Using <strong>ở</strong> for Identity</a></h3>
+<p>Incorrect: Anh ấy <strong>ở</strong> giáo viên. (He <strong>is</strong> teacher.)</p>
+<p>Correct: Anh ấy <strong>là</strong> giáo viên. (He <strong>is</strong> a teacher.)</p>
+<p>Here, the incorrect sentence uses <strong>ở</strong> instead of <strong>là</strong>, causing confusion about the subject’s identity. The correction replaces <strong>ở</strong> with <strong>là</strong> to properly convey that the subject is a teacher.</p>
+<h2 id="advanced-usage-and-exceptions"><a class="header" href="#advanced-usage-and-exceptions">Advanced Usage and Exceptions</a></h2>
+<p>While the basic rules for <strong>là</strong> and <strong>ở</strong> are straightforward, there are more nuanced uses and exceptions to be aware of as you advance in your Vietnamese studies.</p>
+<h3 id="omitting-là-in-informal-speech"><a class="header" href="#omitting-là-in-informal-speech">Omitting <strong>là</strong> in Informal Speech</a></h3>
+<p>In casual conversations, Vietnamese speakers often omit <strong>là</strong> when the context is clear.</p>
+<p>– Full form: Cô ấy <strong>là</strong> bác sĩ. (She <strong>is</strong> a doctor.)</p>
+<p>– Informal: Cô ấy bác sĩ. (She <strong>is</strong> a doctor.)</p>
+<p>Despite the omission, the sentence remains understandable due to the context.</p>
+<h3 id="using-ở-with-time-expressions"><a class="header" href="#using-ở-with-time-expressions">Using <strong>ở</strong> with Time Expressions</a></h3>
+<p>While <strong>ở</strong> primarily indicates location, it can also be used with time expressions to indicate when something happens.</p>
+<p><strong>ở</strong></p>
+<p>– Definition: To be (used with time expressions)</p>
+<p>– Vietnamese: ở</p>
+<p>– Example: Chúng ta gặp nhau <strong>ở</strong> 7 giờ. (We meet <strong>at</strong> 7 o’clock.)</p>
+<p>Here, <strong>ở</strong> is used to specify the time of the meeting.</p>
+<h2 id="practice-exercises"><a class="header" href="#practice-exercises">Practice Exercises</a></h2>
+<p>To solidify your understanding, let’s work through some practice exercises. Choose the correct word ( <strong>là</strong> or <strong>ở</strong>) to complete each sentence.</p>
+<p>1. Cô ấy ___ học sinh.</p>
+<p>2. Chúng tôi ___ trong lớp học.</p>
+<p>3. Bạn ___ bác sĩ phải không?</p>
+<p>4. Họ ___ ở đâu?</p>
+<p>5. Anh ấy ___ nhà.</p>
+<p>Answers:</p>
+<p>1. Cô ấy <strong>là</strong> học sinh. (She <strong>is</strong> a student.)</p>
+<p>2. Chúng tôi <strong>ở</strong> trong lớp học. (We <strong>are</strong> in the classroom.)</p>
+<p>3. Bạn <strong>là</strong> bác sĩ phải không? (Are you a doctor?)</p>
+<p>4. Họ <strong>ở</strong> đâu? (Where are they?)</p>
+<p>5. Anh ấy <strong>ở</strong> nhà. (He <strong>is</strong> at home.)</p>
+<h2 id="conclusion-3"><a class="header" href="#conclusion-3">Conclusion</a></h2>
+<p>Mastering the use of <strong>là</strong> and <strong>ở</strong> is crucial for effectively communicating in Vietnamese. Remember that <strong>là</strong> is used to indicate identity or characteristics, while <strong>ở</strong> specifies location. By practicing and paying attention to these nuances, you will improve your fluency and comprehension in Vietnamese. Keep practicing, and don’t hesitate to revisit these rules whenever you need a refresher. Happy learning!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="elementary-lesson-1"><a class="header" href="#elementary-lesson-1">[Elementary] Lesson 1</a></h1>
+<h2 id="elementary-lesson-1-1"><a class="header" href="#elementary-lesson-1-1">[Elementary] Lesson 1</a></h2>
+<p>Learning the Vietnamese Prepositions is very important because its structure is used in everyday conversation. The more you master it the more you get closer to mastering the Vietnamese language. But first, we need to know what the role of Prepositions is in the structure of the grammar in Vietnamese.</p>
+<p>Vietnamese prepositions link nouns, pronouns and phrases to other words in a sentence. The word or phrase that the preposition introduces is called the object of the preposition. Here are some examples:</p>
+<p><strong>English Prepositions****Vietnamese Prepositions</strong> Prepositions Giới từ inside the house bên trong nhà outside the car bên ngoài xe with me với tôi without him mà không có anh under the table dưới cái bàn after tomorrow sau khi vào ngày mai before sunset trước khi hoàng hôn but I'm busy nhưng tôi đang bận</p>
+<p>As you can see from the example above, the structure of the Prepositions in Vietnamese has a logical pattern. Locate the Prepositions above and see how it works with the rest of the sentence in Vietnamese.</p>
+<h2 id="list-of-prepositions-in-vietnamese"><a class="header" href="#list-of-prepositions-in-vietnamese"><strong>List of Prepositions in Vietnamese</strong></a></h2>
+<p>Below is a list of the Time place and demonstrative pronouns in Vietnamese placed in a table. Memorizing this table will help you add very useful and important words to your Vietnamese vocabulary.</p>
+<p><strong>English Prepositions****Vietnamese Prepositions</strong> about về above trên đây across ngang qua after sau khi against chống lại among trong số around xung quanh as như at tại before trước khi behind sau below dưới đây beneath bên dưới beside bên cạnh between giữa beyond ngoài but nhưng by bởi despite mặc dù down xuống during trong khi except ngoại trừ for cho from từ in trong inside bên trong into vào trong near gần next tiếp theo of của on trên opposite đối diện out ra outside bên ngoài over trên per mỗi plus thêm round tròn since kể từ than hơn through thông qua till đến to đến toward về phía under bên dưới unlike không giống như until cho đến khi up lên via thông qua with với within trong vòng without mà không cần according to theo because of vì close to gần due to do except for trừ far from xa inside of bên trong instead of thay vì near to gần next to bên cạnh outside of bên ngoài prior  trước khi as far as xa như as well as cũng như in addition to ngoài ra in front of trước mặt in spite of mặc dù on behalf of thay mặt cho on top of trên đầu trang của<strong>Demonstratives****Đại từ chỉ định</strong> this cái này that cái đó these những cái này those những cái đó</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="iyouwe-and-myyourour--yourvietnamese"><a class="header" href="#iyouwe-and-myyourour--yourvietnamese">I/You/We and My/Your/Our – YourVietnamese</a></h1>
+<h2 id="introduction-to-vietnamese-pronouns"><a class="header" href="#introduction-to-vietnamese-pronouns">Introduction to Vietnamese Pronouns</a></h2>
+<p>As we have learned before in the <a href="https://yourvietnamese.com/learn-vietnamese/sentence-structure/">Grammar lessons</a>, Vietnamese sentence structure is similar to that of English.</p>
+<p>However, one of the challenges that may hinder you from making rapid progress with your Vietnamese is…pronouns. Their usage is not different from English, just that there are many different Vietnamese words for each English pronoun (I, You, etc.). And the various words are not always interchangeable.</p>
+<p>The grammatical reasons for different Vietnamese words for the same word, say <em>I</em>, are, firstly, to express the difference in age, which is culturally a “big deal”; and secondly, to express the 2 genders.</p>
+<p>And a further complication is that in different regions (North, Middle, South) local words are used extensively for pronouns (which is not true for most other Vietnamese words).</p>
+<p>But there is nothing to be afraid, because after finishing this lesson, you’d know the necessary common words to use in almost every situation, and be understood everywhere in Vietnam.</p>
+<p>Let’s learn how to <em>say Vietnamese pronouns</em> by starting with the pair ‘I – You’.</p>
+<h2 id="say-i-you-in-vietnamese"><a class="header" href="#say-i-you-in-vietnamese">Say <em>I</em>, <em>You</em> in Vietnamese</a></h2>
+<p>From my experience, it’s usually more effective to learn this part by shifting our mind from asking questions such as <em>How do I say ‘I’ in Vietnamese?</em> or <em>How do I say ‘You’ in Vietnamese?</em>. Instead it’s useful to ask the question: <em>What’s the correct word to refer to the older/younger person of conversation?</em>.</p>
+<p>To see why the latter is a more apt question, let’s take a look at the following table:</p>
+<p>Vietnamese words for <em>I</em> and <em>You</em> in various situations</p>
+<p>Word for I – Word for YouWhen to useTôi – Bạn‘I’ and ‘You’ are more or less at the same ageEm – Chị‘I’ is younger than ‘You’ and ‘You’ is femaleChị – Em‘I’ is older than ‘You’ and ‘I’ is femaleEm – Anh‘I’ is younger than ‘You’ and ‘You’ is maleAnh – Em‘I’ is older than ‘You’ and ‘I’ is male</p>
+<p>As can be seen from the above table, if ‘You’ are older (than ‘I’) and are female, the correct word is <em>chị</em>. And interestingly, the word for ‘I’ is also <em>chị</em> if ‘I’ were female and older than ‘You’.</p>
+<p>As an illustration, consider the following example:</p>
+<p><em>Mai (female, older than Huy)</em>: Em đang đi đâu đấy? (Where are you going?)</p>
+<p><em>Huy (male)</em>: Em đang đi học. Còn chị? (I’m going to school. And you?)</p>
+<p><em>Mai</em>: Chị đang đi đến cơ quan. (I’m going to office)</p>
+<p>In this conversation, Mai is older than Huy so Mai refers to Huy using the word <em>em</em> in the first line. When answering Mai’s question, Huy refers to himself using the same word <em>em</em>!</p>
+<p>In line 2, we see again that Huy uses the word <em>chị</em> to refer to Mai while Mai also uses that same word to refer to herself in the 3rd line.</p>
+<p>So we’ve known how to address ourself and the other person in the case of equal or moderately different ages, i.e., within the range of 10 years. The numer 10 is not carved in stone, but approximate. So as long as you feel both persons are in the same ‘generation’, it’s appropriate.</p>
+<p>Next, let’s learn the words to use when the difference in age is significant.</p>
+<p>Say I – You when there is a significant difference in age</p>
+<p>Word for ‘I’ – Word for ‘You’Age relationEm – Cô/BácThe other person is much older than you, but not very old yet (looks younger than 70?). For female.Em – Chú/BácSame as above, but for male.Con – BàThe other person is really much more senior than you (looks older than 70?)Con – ÔngSame as above, but for male.</p>
+<p>As can be learned from the table above, you’d use the word <em>cô</em> in situations where the other person is female, and quite older than you. It’s also this same word <em>cô</em> that would be used by the other person to refer to herself when talking to you. She may choose to use a different word, but its must be equivalent to <em>cô</em>. And since <em>cô</em> is the most common word for this situation, you can just learn this word to get started.</p>
+<p>And the interesting observation is that if you don’t want to remember the word <em>cô</em> to use for females, and <em>chú</em> for males, you can just remember the word <em>bác</em>, which can be used for both males and females. In practice, the word <em>bác</em> may be more popular than <em>chú</em> in the case of addressing males, while <em>cô</em> is more widely used for females.</p>
+<p>As just about no explanation can be as illustrative as a good concrete example, let’s go through another example short dialog where a young man called Trung is talking to a very senior couple.</p>
+<p><em>Trung</em>: Ông bà đang nấu gì vậy? (Grandpa Grandma are cooking what?)</p>
+<p><em>The old couple</em>: Ông bà đang nấu xôi. (Grandpa grandma are cooking sticky rice)</p>
+<p>In this example, Trung refers to the senior couple as <em>ông bà</em>, juxtaposing the words <em>ông</em> and <em>bà</em> to refer to the couple. When replying to Trung’s query, the senior couple themselves use the same phrase ‘ông bà’ to refer to themselves.</p>
+<p>If everything has been clear so far to you: Congratulations! you’ve got the knack of Vietnamese pronouns. Really.</p>
+<p>Before we wind up this section, it’s worth repeating that one of the deciding factors when choosing the correct word pair to use is the age difference of the 2 speakers, not absolute age. If you’re a 45 male, a young chap at 20 would call you <em>anh</em> but your high-school friends, who are also 45 years old, would definitely not refer to you using <em>anh</em> because to them, you’re not older.</p>
+<p>The following Video by Donna Vo would help you review what we’ve gone through so far.</p>
+<h2 id="say-he-she-in-vietnamese"><a class="header" href="#say-he-she-in-vietnamese">Say <em>He</em>, <em>She</em> in Vietnamese</a></h2>
+<p>The not-so-good news is that just as for the pronouns <em>I</em> and <em>You</em> we’ve learned above, there are many different translations for <em>He</em> and <em>She</em>, depending also on the age relation between the speaker and the referred person as well as the gender of the referred person (and note how English also has 2 words: <em>she</em> for female and <em>he</em> for male.</p>
+<p>The absolutely fantastic news is that you’ve already learned all those words! The following table confirms why.</p>
+<h3 id="he-she-in-vietnamese"><a class="header" href="#he-she-in-vietnamese">He, She in Vietnamese</a></h3>
+<p>[The word for ‘You’, if you were talking to the person directly] + <em>ấy</em> (or <em>ta</em>).</p>
+<p>To clear things up, what’s the phrase for <em>he</em> if the man is older than you?</p>
+<p>To get to the correct answer, what’s the word to refer to an older guy you’re talking to? It’s <em>anh</em>, right? (If you got it wrong, please review the <a href="pronouns.html#i-you">section about ‘I’ and ‘You’</a> above).</p>
+<p>So the phrase for <em>he</em> is then… <em>anh</em> + <em>ấy</em> = <em>anh ấy</em>. What if he’s younger than you? The answer is <em>em ấy</em>.</p>
+<p>Just to make sure everything is absolutely well understood, how would you translate <em>She likes chatting with friends</em>? The answer is below:</p>
+<p>Cô ấythích trò chuyệnvới bạn bèShelikes chattingwith friends</p>
+<h2 id="you-plural-we-and-they"><a class="header" href="#you-plural-we-and-they">You (plural), We and They</a></h2>
+<p>In this section, we’ll learn how to refer to a group of people.</p>
+<p>We’ve learned in section 1 above that there are many words for the (singular) <em>You</em> such as <em>em</em>, <em>anh</em> and <em>chị</em>. To make <em>You</em> plural to refer to the many people you’re talking to, we simply add the word <em>các</em> in front.</p>
+<p>To refer to the plural version of <em>You</em>, use <em>các</em> + [The suitable word for singular You]</p>
+<p>Next, let’s talk about the pronoun <em>They</em> as it shares a similar rule as the plural <em>You</em>. The standard translation is <em>họ</em> or <em>bọn họ</em>. In cases when <em>they</em> comprises of only men or only ladies, we normally translate <em>they</em> in another way to indicate this explicitly.</p>
+<p>They (all men) ‘các’ + [The suitable word for ‘He’]</p>
+<p>They (all ladies) ‘các’ + [The suitable word for ‘She’]</p>
+<p>So what does <em>[The suitable word for ‘He’]</em> above mean? It means you need to choose the appropriate word for the pronoun <em>he</em>, depending on the age relation. For example, if <em>they</em> is a group of men all older than you, the correct phrase would be <em>các</em> + <em>anh ấy</em>. Again, <em>anh ấy</em> is the translation of <em>he</em> when referring to older men.</p>
+<p>What should you use for <em>they</em> if some of them are older than you while some are younger? If some of them are older than you, I think you wouldn’t mind refer to the group as a whole as if they consisted of people all older than you. Would you?</p>
+<p>Lastly, let’s see how we say <em>we</em> in Vietnamese:</p>
+<p><em>We</em> = <em>tụi</em>/ <em>bọn/chúng</em> + [the suitable word for ‘I’].</p>
+<p>For example, a group of children talking to their teacher would refer to themselves as <em>tụi em</em> or <em>bọn em</em>. A group of senior students would use <em>tụi anh</em> in the place of <em>we</em> when talking to junior students.</p>
+<h2 id="some-caveats-on-pronouns-usage"><a class="header" href="#some-caveats-on-pronouns-usage">Some caveats on pronouns usage</a></h2>
+<p>In this lesson, we’ve learned how to say the various pronouns: I, You, He, She, We, You, They. There is one thing you must be aware of by now is that there are many different words for each of the English pronouns, due mainly to 2 reasons: age and gender.</p>
+<p>The first point I would like to remind you is that in the cases where there are different words for male and female, please take your time to use the correct word. Or they may think you’re confused about their gender…Just kidding.</p>
+<p>For age, however, you really need to exercise some caution. And the reason is that if you talk to an older person, which necessitates the word <em>anh</em> for male or <em>chị</em> for female but you use the word <em>em</em> instead. This would make the other person think you are not respecting him/her and this is definitely be among the mistakes you don’t want to make (unless you’re disrespectful on purpose). And if the other person is a male, there’s no doubt it’s not a trivial mistake.</p>
+<p>In our discussion in section 1, we said you’d use <em>anh</em> or <em>chị</em> when the other person is older than you. But if you have the slightess doubt whether you or they are older, consider them older and use the appropriate word. That’s the short and simple way to be right.</p>
+<p>Now, let’s delve a bit into the dynamics behind why using the appropriate word is necessary. When the person you talk to is male, talking to them using <em>anh</em> shows that you value them highly because the word has evolved to become a symbol of strength, not just a mere language-correct way to refer to someone older than you. As such, it’s obvious that you should take every opportunity to use the word <em>anh</em> to refer to a man you talk to, especially in business settings. And you’d see they refer to you using <em>anh</em> or <em>chị</em> as well. It’s polite and is used everyday by locals, so you should follow.</p>
+<p>If the other person is a lady, the wind flows in the opposite direction. Vietnamese women, like women everywhere else, want to be viewed as “young” in the eyes of men. So if you’re male and older than the lady, definitely use the word <em>em</em> to refer to her. And even when you’re younger but the age difference is small, use <em>em</em> as well. And if she ever mentions you’re younger than her, congratulate her on looking so young (that you were mistaken she’s younger than you). It simply works.</p>
+<p>In business settings, however, it may be safer to use <em>chị</em> when it’s unclear who’s younger.</p>
+<p>In business settings, it’s polite to refer to the other person using the word for a senior person.</p>
+<h2 id="my-your-our-in-vietnamese"><a class="header" href="#my-your-our-in-vietnamese">My, Your, Our in Vietnamese</a></h2>
+<p>Vietnamese language doesn’t really have a direct equivalent of possessive pronouns such as My, Your, etc. This means that in order to say, for example, <em>my</em>, you would say <em>of me</em> or <em>belonging to me</em> when translated literally to English. And the Vietnamese translation of ‘of’ or ‘belonging to’ is <em>của</em>.</p>
+<p>My = <em>của</em> + [the suitable word for ‘I’]</p>
+<p>Your = <em>của</em> + [the suitable word for ‘You’]</p>
+<p>The above rule applies to all other cases: his, her, our, its, their, etc.</p>
+<p>To practice, let’s translate the sentence: <em>This is my friend, John</em>. The table below explains the translation:</p>
+<p>.</p>
+<p>Đây làngười bạncủa tôi, JohnThis isthe friendof me, John</p>
+<h2 id="me-you-us-in-vietnamese"><a class="header" href="#me-you-us-in-vietnamese">Me, You, Us in Vietnamese</a></h2>
+<p>It can’t be better: the same word for ‘I’ is used for ‘me’. The same word for ‘we’ is used for ‘us’. The same applies to other pronouns. What a good news!</p>
+<p>MaryloveshimMaryyêuanh ấyHelovesMaryAnh ấyyêuMary</p>
+<h2 id="summary-4"><a class="header" href="#summary-4">Summary</a></h2>
+<p>There is no doubt that this is a tough lesson. So please review it as many times as you need to. And if you have any questions, please simply write in the Comments section below.</p>
+<p>The most important points in this lesson are:</p>
+<ul>
+<li>There are different Vietnamese words for each English pronoun, depending on the age relation and gender of the person you talk to.</li>
+<li>The common canonical Vietnamese words for <em>I</em> – <em>You</em> are <em>tôi</em>, <em>bạn</em>, <em>anh</em>, <em>chị</em>, and <em>em</em>, etc. Other pronouns: He, She, We, They are built upon the words for <em>I</em> and <em>You</em>.</li>
+<li>In business settings, it’s polite to refer to your associates as <em>anh</em> and <em>chị</em></li>
+<li>The way to say <em>my</em> in Vietnamese is <em>belonging to me</em> or <em>of me</em>. Similar for your, his, her, our, their.</li>
+<li>In Vietnamese, the same word is used for both subject and object pronouns: <em>I</em> and <em>me</em>, <em>He</em> and <em>him</em>, etc.</li>
+<li>We didn’t quite mention this: the word for <em>It</em> and <em>Its</em> is <em>Nó</em>.</li>
+</ul>
+<p>If you have questions related to this post, please comment below.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vietnamese-modals-and-auxiliary-verbs---vietlango-vietnamese"><a class="header" href="#vietnamese-modals-and-auxiliary-verbs---vietlango-vietnamese">Vietnamese Modals and Auxiliary Verbs - VietLango Vietnamese</a></h1>
+<p>Vietnamese is a fascinating and rich language with a unique grammar structure distinct from English. One of the crucial aspects of mastering Vietnamese involves understanding its modals and auxiliary verbs. These elements are essential because they help convey nuances in meaning, such as ability, permission, obligation, and possibility. In this article, we will delve into the various modals and auxiliary verbs in Vietnamese, their usage, and provide examples to help you grasp their applications better.</p>
+<h2 id="introduction-to-vietnamese-modals-and-auxiliary-verbs"><a class="header" href="#introduction-to-vietnamese-modals-and-auxiliary-verbs">Introduction to Vietnamese Modals and Auxiliary Verbs</a></h2>
+<p>Modals and auxiliary verbs in Vietnamese play a significant role in forming complex sentences and expressing different shades of meaning. Unlike English, which relies heavily on modal verbs like “can,” “must,” and “should,” Vietnamese uses a range of particles and auxiliary verbs to achieve the same purpose. Understanding these components will not only enhance your comprehension of Vietnamese but also improve your ability to communicate effectively.</p>
+<h3 id="what-are-modals-and-auxiliary-verbs"><a class="header" href="#what-are-modals-and-auxiliary-verbs">What are Modals and Auxiliary Verbs?</a></h3>
+<p>In English, modal verbs are auxiliary verbs that express necessity, possibility, permission, or ability. Examples include “can,” “may,” “must,” “shall,” and “will.” Auxiliary verbs, on the other hand, are used alongside main verbs to form different tenses, moods, or voices. Examples of auxiliary verbs in English include “be,” “have,” and “do.”</p>
+<p>In Vietnamese, modals and auxiliary verbs serve similar functions but are often expressed through distinct words and structures. Vietnamese does not have inflections like English, so the context and specific particles play a crucial role in conveying meaning.</p>
+<h2 id="common-vietnamese-modals-and-their-usage"><a class="header" href="#common-vietnamese-modals-and-their-usage">Common Vietnamese Modals and Their Usage</a></h2>
+<p>Let’s explore some of the most common modals in Vietnamese and how they are used in sentences.</p>
+<h3 id="1-có-thể-can-could"><a class="header" href="#1-có-thể-can-could">1. Có Thể (Can, Could)</a></h3>
+<p>“**Có thể**” is used to express ability or possibility, similar to “can” or “could” in English.</p>
+<p>Examples:</p>
+<p>– Tôi có thể nói tiếng Việt. (I can speak Vietnamese.)</p>
+<p>– Anh ấy có thể đến muộn. (He could arrive late.)</p>
+<h3 id="2-nên-should-ought-to"><a class="header" href="#2-nên-should-ought-to">2. Nên (Should, Ought to)</a></h3>
+<p>“**Nên**” is used to give advice or suggest that something is a good idea, similar to “should” or “ought to” in English.</p>
+<p>Examples:</p>
+<p>– Bạn nên học tiếng Việt mỗi ngày. (You should study Vietnamese every day.)</p>
+<p>– Chúng ta nên đi ngủ sớm. (We ought to go to bed early.)</p>
+<h3 id="3-phải-must-have-to"><a class="header" href="#3-phải-must-have-to">3. Phải (Must, Have to)</a></h3>
+<p>“**Phải**” indicates necessity or obligation, akin to “must” or “have to” in English.</p>
+<p>Examples:</p>
+<p>– Tôi phải làm bài tập về nhà. (I must do my homework.)</p>
+<p>– Bạn phải đến đúng giờ. (You have to arrive on time.)</p>
+<h3 id="4-sẽ-will-shall"><a class="header" href="#4-sẽ-will-shall">4. Sẽ (Will, Shall)</a></h3>
+<p>“**Sẽ**” is used to indicate future actions or events, similar to “will” or “shall” in English.</p>
+<p>Examples:</p>
+<p>– Chúng tôi sẽ đi du lịch vào tuần sau. (We will travel next week.)</p>
+<p>– Bạn sẽ gặp anh ấy ở đâu? (Where shall you meet him?)</p>
+<h3 id="5-Được-can-may-be-allowed-to"><a class="header" href="#5-Được-can-may-be-allowed-to">5. Được (Can, May, Be Allowed to)</a></h3>
+<p>“**Được**” is used to express permission or capability, similar to “can” or “may” in English.</p>
+<p>Examples:</p>
+<p>– Tôi được phép nghỉ học hôm nay. (I am allowed to take the day off today.)</p>
+<p>– Bạn có thể được giúp đỡ không? (Can you be helped?)</p>
+<h2 id="auxiliary-verbs-in-vietnamese"><a class="header" href="#auxiliary-verbs-in-vietnamese">Auxiliary Verbs in Vietnamese</a></h2>
+<p>Auxiliary verbs in Vietnamese are used to form different tenses, aspects, or voices. These verbs often precede the main verb and help indicate the time of action or the nature of the action.</p>
+<h3 id="1-Đã-past-tense-marker"><a class="header" href="#1-Đã-past-tense-marker">1. Đã (Past Tense Marker)</a></h3>
+<p>“**Đã**” is used to indicate that an action has been completed in the past, similar to the past tense in English.</p>
+<p>Examples:</p>
+<p>– Tôi đã ăn sáng. (I have eaten breakfast.)</p>
+<p>– Cô ấy đã đi làm. (She has gone to work.)</p>
+<h3 id="2-Đang-present-continuous-tense-marker"><a class="header" href="#2-Đang-present-continuous-tense-marker">2. Đang (Present Continuous Tense Marker)</a></h3>
+<p>“**Đang**” is used to indicate an ongoing action, similar to the present continuous tense in English.</p>
+<p>Examples:</p>
+<p>– Anh ấy đang học bài. (He is studying.)</p>
+<p>– Chúng tôi đang chơi bóng đá. (We are playing soccer.)</p>
+<h3 id="3-sẽ-future-tense-marker"><a class="header" href="#3-sẽ-future-tense-marker">3. Sẽ (Future Tense Marker)</a></h3>
+<p>As mentioned earlier, “**sẽ**” is also used to indicate future actions or events, functioning as an auxiliary verb to mark the future tense.</p>
+<p>Examples:</p>
+<p>– Tôi sẽ đi chợ vào chiều nay. (I will go to the market this afternoon.)</p>
+<p>– Họ sẽ đến thăm chúng tôi. (They will come to visit us.)</p>
+<h3 id="4-Đã-từng-used-to-have-ever"><a class="header" href="#4-Đã-từng-used-to-have-ever">4. Đã Từng (Used to, Have Ever)</a></h3>
+<p>“**Đã từng**” is used to indicate that an action happened at some point in the past, similar to “used to” or “have ever” in English.</p>
+<p>Examples:</p>
+<p>– Tôi đã từng sống ở Hà Nội. (I used to live in Hanoi.)</p>
+<p>– Bạn đã từng ăn phở chưa? (Have you ever eaten pho?)</p>
+<h2 id="combining-modals-and-auxiliary-verbs"><a class="header" href="#combining-modals-and-auxiliary-verbs">Combining Modals and Auxiliary Verbs</a></h2>
+<p>In Vietnamese, modals and auxiliary verbs can be combined to convey more complex meanings. Let’s look at some examples to illustrate this.</p>
+<h3 id="1-ability-in-the-past"><a class="header" href="#1-ability-in-the-past">1. Ability in the Past</a></h3>
+<p>To express ability in the past, you can combine “**có thể**” (can) with “**đã**” (past tense marker).</p>
+<p>Example:</p>
+<p>– Tôi đã có thể hoàn thành công việc. (I was able to complete the work.)</p>
+<h3 id="2-suggesting-future-actions"><a class="header" href="#2-suggesting-future-actions">2. Suggesting Future Actions</a></h3>
+<p>To suggest future actions, you can combine “**nên**” (should) with “**sẽ**” (future tense marker).</p>
+<p>Example:</p>
+<p>– Bạn nên sẽ bắt đầu học từ bây giờ. (You should start studying from now.)</p>
+<h3 id="3-ongoing-obligations"><a class="header" href="#3-ongoing-obligations">3. Ongoing Obligations</a></h3>
+<p>To indicate ongoing obligations, you can combine “**phải**” (must) with “**đang**” (present continuous marker).</p>
+<p>Example:</p>
+<p>– Tôi đang phải làm việc. (I am having to work.)</p>
+<h2 id="nuances-and-contextual-meanings"><a class="header" href="#nuances-and-contextual-meanings">Nuances and Contextual Meanings</a></h2>
+<p>The use of modals and auxiliary verbs in Vietnamese can vary based on context, tone, and formality. Here are some tips to help you understand these nuances better.</p>
+<h3 id="1-formal-vs-informal-speech"><a class="header" href="#1-formal-vs-informal-speech">1. Formal vs. Informal Speech</a></h3>
+<p>In formal speech, people often use full modal verbs and auxiliary verbs. In informal speech, contractions or omissions may occur. For instance, instead of saying “**Tôi sẽ đi**” (I will go), in casual conversation, you might hear “**Tôi đi**” with the future tense implied by context.</p>
+<h3 id="2-tone-and-intention"><a class="header" href="#2-tone-and-intention">2. Tone and Intention</a></h3>
+<p>The tone in which you use modals can also affect their meaning. For example, “**phải**” (must) can sound very strong and demanding. To soften the request, you might use “**nên**” (should) instead, depending on your intention.</p>
+<p>Example:</p>
+<p>– Bạn phải làm điều đó. (You must do it.) – Strong and demanding.</p>
+<p>– Bạn nên làm điều đó. (You should do it.) – Softer and more suggestive.</p>
+<h2 id="practice-exercises-1"><a class="header" href="#practice-exercises-1">Practice Exercises</a></h2>
+<p>To solidify your understanding of Vietnamese modals and auxiliary verbs, let’s try some practice exercises.</p>
+<h3 id="exercise-1-translate-the-following-sentences"><a class="header" href="#exercise-1-translate-the-following-sentences">Exercise 1: Translate the Following Sentences</a></h3>
+<p>1. I can help you with your homework.</p>
+<p>2. She should visit her grandmother.</p>
+<p>3. They must finish their project by tomorrow.</p>
+<p>4. We will go to the beach next weekend.</p>
+<p>5. Have you ever tried Vietnamese coffee?</p>
+<h3 id="exercise-2-fill-in-the-blanks-with-the-appropriate-modal-or-auxiliary-verb"><a class="header" href="#exercise-2-fill-in-the-blanks-with-the-appropriate-modal-or-auxiliary-verb">Exercise 2: Fill in the Blanks with the Appropriate Modal or Auxiliary Verb</a></h3>
+<p>1. Anh ấy ___ (can) nói tiếng Anh rất giỏi.</p>
+<p>2. Tôi ___ (must) đi chợ mua thức ăn.</p>
+<p>3. Chúng tôi ___ (should) chuẩn bị cho kỳ thi.</p>
+<p>4. Cô ấy ___ (used to) sống ở nước ngoài.</p>
+<p>5. Bạn ___ (will) đi du lịch vào mùa hè này.</p>
+<h3 id="exercise-3-combine-modals-and-auxiliary-verbs"><a class="header" href="#exercise-3-combine-modals-and-auxiliary-verbs">Exercise 3: Combine Modals and Auxiliary Verbs</a></h3>
+<p>Create sentences by combining the given modals and auxiliary verbs.</p>
+<p>1. Sẽ + Có thể (future ability)</p>
+<p>2. Đang + Phải (ongoing obligation)</p>
+<p>3. Đã + Nên (past suggestion)</p>
+<h2 id="conclusion-4"><a class="header" href="#conclusion-4">Conclusion</a></h2>
+<p>Mastering Vietnamese modals and auxiliary verbs is a crucial step in becoming proficient in the language. These elements help you express a wide range of meanings, from ability and permission to necessity and possibility. By understanding their usage and practicing regularly, you will enhance your communication skills and deepen your understanding of Vietnamese grammar.</p>
+<p>Remember, language learning is a journey, and consistent practice is key. Keep exploring, practicing, and immersing yourself in the language to achieve fluency. Happy learning!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="beginner-lesson-4--vietnamese-plural"><a class="header" href="#beginner-lesson-4--vietnamese-plural">[Beginner] Lesson 4 : Vietnamese Plural</a></h1>
+<h2 id="beginner-lesson-4--vietnamese-plural-1"><a class="header" href="#beginner-lesson-4--vietnamese-plural-1">[Beginner] Lesson 4 : Vietnamese Plural</a></h2>
+<h2 id="vietnamese-plural"><a class="header" href="#vietnamese-plural"><strong>Vietnamese Plural</strong></a></h2>
+<p>Learning the Vietnamese Plural is very important because its structure is used in everyday conversation. The more you master it the more you get closer to mastering the Vietnamese language. But first, we need to know what the role of Plural is in the structure of the grammar in Vietnamese.</p>
+<p>Vietnamese Plurals are grammatical numbers, typically referring to more than one of the referent in the real world. In the English language, singular and plural are the only grammatical numbers. Here are some examples:</p>
+<p><strong>Plural****Số nhiều</strong> my book cuốn sách của tôi my books những cuốn sách của tôi our daughter con gái của chúng tôi our daughters những đứa con gái của chúng tôi I'm cold Tôi lạnh we're cold chúng tôi đang lạnh his chickens những con gà của anh ấy their chicken con gà của họ</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="compound-words-in-vietnamese"><a class="header" href="#compound-words-in-vietnamese">Compound words in Vietnamese</a></h1>
+<h2 id="compound-words-in-vietnamese-1"><a class="header" href="#compound-words-in-vietnamese-1">Compound words in Vietnamese</a></h2>
+<h2 id="definition"><a class="header" href="#definition"><strong>Definition</strong></a></h2>
+<p>A compound word consists of two or more words linked together. Each individual word must have its own meaning.</p>
+<p>Example:</p>
+<ul>
+<li>giày dép (footwear) = giày (shoes) + dép (sandal) → Both of them refer to things that people wear on their feet.</li>
+<li>ba mẹ (parents) = ba (father) + mẹ (mother) → Both of them refer to family members.</li>
+<li>bánh sinh nhật (birthday cake) = bánh (a sweet food made with a mixture of flour, eggs, fat, and sugar) + sinh nhật (the day that is an exact year or number of years after a person was born).</li>
+<li>thầy cô (teacher) = thầy (a male teacher) + cô (a female teacher) → Both of them refer to how Vietnamese students address their teachers.</li>
+</ul>
+<h2 id="classification"><a class="header" href="#classification"><strong>Classification</strong></a></h2>
+<h3 id="subordinate-compound-words"><a class="header" href="#subordinate-compound-words"><strong>Subordinate compound words</strong></a></h3>
+<p>This type consists of the main word and subordinate word modifying the main word. Normally, main words are placed before subordinate words and have wider meaning.</p>
+<p>The meaning of a subordinate compound word is narrower than the meaning of the main word that makes it up.</p>
+<p>Example:</p>
+<ul>
+<li>bà ngoại (maternal grandmother) = bà (the main word) + ngoại (the subordinate word)</li>
+</ul>
+<p>We can make other subordinate compound words by combining the word “bà” with some other words, such as: bà nội (paternal grandmother), bà mụ (midwife), bà tôi (my grandmother), etc.</p>
+<ul>
+<li>xe máy (motorbike) = xe (the main word) + máy (the subordinate word)</li>
+</ul>
+<p>We can make other subordinate compound words by combining the word “xe” with some other words, such as: xe lửa (train), xe hơi (car), xe bò (wagon), etc.</p>
+<ul>
+<li>hoa hồng (rose) = hoa (the main word) + hồng (the subordinate word)</li>
+</ul>
+<p>We can make other subordinate compound words by combining the word “hoa” with some other words, such as: hoa hướng dương (sunflower), hoa cúc dại (daisy), hoa đào (blossom), etc.</p>
+<ul>
+<li>bút chì (pencil) = bút (the main word) + chì (the subordinate word)</li>
+</ul>
+<p>We can make other subordinate compound words by combining the word “bút” with some other words, such as: bút bi (pen), bút lông (marker), bút màu (crayon), etc.</p>
+<h3 id="coordinated-compound-words"><a class="header" href="#coordinated-compound-words"><strong>Coordinated compound words</strong></a></h3>
+<p>Coordinated compound words are words in which elements are equal in meaning. There is no distinction between the main and the subordinate word.</p>
+<p>The meaning of a coordinated compound word is more general than the meaning of words that make it up.</p>
+<p>Example:</p>
+<p><strong>Vietnamese</strong></p>
+<p><strong>English</strong></p>
+<p>xóm làng</p>
+<p>village</p>
+<p>ao hồ</p>
+<p>lake</p>
+<p>đất nước</p>
+<p>country</p>
+<p>bàn ghế</p>
+<p>furniture</p>
+<p>ẩm ướt</p>
+<p>wet</p>
+<p>yêu thương</p>
+<p>love</p>
+<p>bút thước</p>
+<p>stationery</p>
+<p>bếp núc</p>
+<p>kitchen</p>
+<p>đường sá</p>
+<p>road</p>
+<p>xinh đẹp</p>
+<p>beautiful</p>
+<p>So far, we’ve discussed compound words in Vietnamese. To memorize compound words better, you can learn them in context, then practice by giving examples. Hope this lesson will help you in your learning journey!</p>
+<p><strong>Tags: Vietnamese compound words, Vietnamese subordinate compound words, Vietnamese coordinated compound words, word formation in Vietnamese, Vietnamese grammar, Vietnamese grammar lessons, Vietnamese for beginners, learn Vietnamese</strong></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vietnamese-conjunctions-and-negations--yourvietnamese"><a class="header" href="#vietnamese-conjunctions-and-negations--yourvietnamese">Vietnamese conjunctions and negations – YourVietnamese</a></h1>
+<p>We’ve gone through lessons on <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-nouns/">Vietnamese nouns</a>, <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-adjectives/">Adjectives</a> then <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-verbs/">Verbs</a> and <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-adverbs/">Adverbs</a>. Those are the most fundamental building blocks of any sentence. In this last lesson of our express course on Vietnamese Grammar, we’ll <em>learn negation and conjunctions</em>.</p>
+<h3 id="negation"><a class="header" href="#negation">Negation</a></h3>
+<p>The way we Vietnamese saying no is also very similar to the English way. The equivalent of <em>not</em> is <em>không</em> in Vietnamese. To be specific, let’s consider the following example in which a verb is negated.</p>
+<p>Verb negation:</p>
+<p>Shedoesn’tread fastCô ấykhôngđọc nhanh</p>
+<p>In the English negative sentence, we need to put <em>does not</em> in front of the verb <em>read</em>. In the Vietnamese translation, we use the word <em>không</em> in the place of <em>does not</em>. This word <em>không</em> would be the main negation word for most cases.</p>
+<p>Let’s take another example to see how adjectives are negated. Consider the following:</p>
+<p>Negation of adjectives</p>
+<p>The storyisn’tinterestingCâu chuyệnkhôngthú vị</p>
+<p>Here, we again use <em>không</em> in front of the adjective <em>thú vị</em>(“interesting”) to negate it.</p>
+<p>The summary of this section?</p>
+<h4 id="vietnamese-negation"><a class="header" href="#vietnamese-negation">Vietnamese Negation</a></h4>
+<p>Use <em>không</em> in the place of <em>doesn’t</em>, <em>don’t</em> or <em>isn’t</em>, <em>aren’t</em>, etc.</p>
+<h3 id="conjunctions"><a class="header" href="#conjunctions">Conjunctions</a></h3>
+<p>Now that we’re aware of most of the basic sentential constructs in Vietnamese, it seems appropriate to learn about conjunctions so that we can connect simple sentences into more complex ones.</p>
+<p>Let’s begin with <em>and</em>, which connects ideas that support each other, and <em>but</em>, which contrasts opposite ideas. The equivalent of <em>and</em> and <em>but</em> in Vietnamese are <em>và</em> and <em>nhưng</em>, respectively. Let illustrate their usage with the following two examples.</p>
+<p>Examples of <em>and</em> and <em>but</em></p>
+<p>I likethis colorandthat colorTôi thíchmàu nàyvàmàu kiaThis methodissimplebuteffectivePhương pháp nàyđơn giảnnhưnghiệu quả</p>
+<p>We can observe in these two examples that <em>và</em>(“and”) and <em>nhưng</em>(“but”) are used exactly in the place of their English counterparts. In the first example, <em>and</em> is used to connect two nouns while <em>but</em> is used in the second example to connect two adjectives. Let’s look at an example where we use <em>and</em> to connect two simple sentences:</p>
+<p>Connecting simple sentences</p>
+<p>His idea is greatandI really like itÝ tưởng của anh ta hayvàtôi thực sự thích nó</p>
+<p>Here, the Vietnamese usage of <em>và</em>(“and”) is, again, totally similar to the English usage of <em>and</em>.</p>
+<p>There is another frequently used conjunction: <em>or</em>, whose Vietnamese equivalent is <em>hay</em>, which share a very similar usage to <em>or</em>.</p>
+<p>The related construct <em>either</em>… <em>or</em> is expressed by the single word <em>hoặc</em>.</p>
+<p>Below are a couple of examples to illustrate <em>hay</em> and <em>hoặc</em>.</p>
+<p>Example usages of <em>hay</em> and <em>hoặc</em></p>
+<p>Do youlikethis colororthat color?Anhthíchmàu nàyhaymàu kia?Pleasedoeitherthis questionorthat questionXin vui lònglàmcâu hỏi nàyhoặccâu hỏi kia</p>
+<p>To conclude what we’ve just learned about Vietnamese conjunctions</p>
+<h4 id="vietnamese-conjunctions"><a class="header" href="#vietnamese-conjunctions">Vietnamese Conjunctions</a></h4>
+<p>Use <em>và</em>(“and”), <em>nhưng</em>(“but”), <em>hay</em>(“or”), <em>hoặc</em> (“either…or”)</p>
+<p>the way you use them in English.</p>
+<p>If you have questions related to this post, please comment below.</p>
+<p><img src="https://secure.gravatar.com/avatar/a66a16d35561de34a05d128fadf48d64?s=56&amp;d=mm&amp;r=g" alt="" /></p>
+<h2 id="post-navigation-1"><a class="header" href="#post-navigation-1">Post navigation</a></h2>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Adjectives - duykhan&#x27;s guide to Vietnamese Grammar</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">duykhan&#x27;s guide to Vietnamese Grammar</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="vietnamese-adjectives--yourvietnamese"><a class="header" href="#vietnamese-adjectives--yourvietnamese">Vietnamese adjectives – YourVietnamese</a></h1>
+<p>In this lesson, we’re going to learn about the usage of <em>adjectives in Vietnamese</em>. As the primary role of adjectives is to modify nouns, it’s quite important that you have finished the <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-nouns/">lesson on nouns</a> before this lesson.</p>
+<h3 id="position-of-vietnamese-adjectives"><a class="header" href="#position-of-vietnamese-adjectives">Position of Vietnamese Adjectives</a></h3>
+<p>If you can still recall from the lesson on Vietnamese sentence structure, you have learned that adjectives are put after the nouns they modify. For instance, <em>I bought this interesting book yesterday</em> is translated into <em>I bought book interesting this yesterday</em>.</p>
+<p>Example:</p>
+<p>Original English sentenceI bought this interesting book yesterday.Rearanged for translationIboughtbookinterestingthisyesterdayVietnamese translationTôimuaquyển sáchthú vịnàyhôm qua</p>
+<p>We’ve learned in the <a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-nouns/">lesson on Nouns</a> that <em>this</em> is positioned after the nouns it modifies in Vietnamese. Now, with the presence of adjectives, the adjective and the noun forms a noun phrase and <em>này</em>(“this”) is therefore put after the adjective. So, a small formula to summarise this is:</p>
+<h4 id="position-of-adjectives-in-vietnamese"><a class="header" href="#position-of-adjectives-in-vietnamese">Position of Adjectives in Vietnamese</a></h4>
+<p><a href="https://yourvietnamese.com/learn-vietnamese/vietnamese-nouns/#measure-words">Measure word</a> + Noun + Adjectives + <em>này</em>(“this”)/ <em>kia</em>(“that”)</p>
+<p>Let’s now capitalise on this knowledge about positions of adjectives to translate the phrase <em>this book cover</em>. Given that <em>cover</em> translates into <em>bìa</em> and we have already known that <em>book</em> translates into <em>sách</em>, <em>this</em> translates into <em>này</em>, what’s your translation for the phrase?</p>
+<p>If your translation is <em>sách bìa này</em> or <em>quyển sách bìa này</em> or the likes, I believe you understand the materials well so far although it’s not the correct answer yet. Let’s ask a couple of questions to clarify the translation process: what’s the main noun in this phrase? In other words, are we talking about book or cover? It’s <em>cover</em>, right? Then we need to find out the measure word for this principal noun. It’s <em>cái</em>.</p>
+<p>The next question: <em>book</em> functions like an adjective in that it modifies the main noun <em>cover</em>, doesn’t it? Then, our formula right above gives us the following translation:</p>
+<p>Translation:</p>
+<p>Measure word“cover”“book”“this”Cáibìasáchnày</p>
+<p>Everything is clear so far? …Let’s move on to talk about inflections on adjectives.</p>
+<h3 id="inflections-on-vietnamese-adjectives"><a class="header" href="#inflections-on-vietnamese-adjectives">Inflections on Vietnamese Adjectives</a></h3>
+<p>One of the most interesting aspect of adjectives in English is that they can change meaning through inflections.</p>
+<p>For example, the adjective <em>happy</em> can be negated by adding the prefix <em>un-</em> to form the negative-meaning word <em>unhappy</em>; the meaning of <em>honest</em> can be reverted through the use of the prefix <em>dis-</em> to form <em>dishonest</em>.</p>
+<p>In Vietnamese, however, this is not possible for adjectives, and other types of words as well.</p>
+<p>But there should be no issue with translating <em>unhappy</em> into Vietnamese as we can simply translate it as <em>not happy</em>.</p>
+<p>How about transforming adjectives into nouns, as in the noun <em>happiness</em>, which is derived by adding the suffix -ness to the adjective <em>happy?</em></p>
+<p>As there is no inflection whatsoever on Vietnamese words, we can’t apply a similar transformation. The way to make adjectives become nouns in Vietnamese is to add in front of them an appropriate “adj-to-noun” transformers such as <em>niềm</em>, <em>nỗi</em>, <em>sự</em>, etc. In our example, the word for <em>happy</em> is <em>niềm</em> so that <em>happiness</em> is translated into <em>niềm hạnh phúc</em>.</p>
+<p>To clarify the role of these transformers, consider the following mapping:</p>
+<p>niềmhạnh phúc-nesshappy</p>
+<p>This table clarifies that transformers such as “niềm”, “nỗi”, “cái”, “điều”, “sự”, … by themselves don’t have any meaning. They only transform the following word into the correct part-of-speech to follow the grammar.</p>
+<p>The difficulty here is that you need to learn which “transformer” is used for which kinds of adjectives. The good news (or bad news?) is that for most of the cases, an adjective can accept many different “transformers”: so remembering one of them will do.</p>
+<p>How about the suffix <em>-ly</em> that is added to many adjectives to make them become adverbs as in <em>happily</em>, <em>quickly</em>?</p>
+<p>The answer is short and simple: no change is needed to make adjectives become adverbs in Vietnamese! That is to say that <em>hạnh phúc</em>(“happy”) can be used as both an adjective (“happy”) and an adverb (“happily”).</p>
+<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<p>In this lesson, we’ve got to know the followings about Vietnamese adjectives:</p>
+<ul>
+<li>Adjectives are put after the nouns they modify. As a corollary, phrases of multiple nouns are translated into Vietnamese in reverse order.</li>
+<li>To make adjectives become nouns, add their appropriate “transformers” such as <em>sự</em>, <em>niềm</em>. Adjectives in Vietnamese also function as adverbs.</li>
+</ul>
+<p>If you have questions related to this post, please comment below.</p>
+<p><img src="https://secure.gravatar.com/avatar/a66a16d35561de34a05d128fadf48d64?s=56&amp;d=mm&amp;r=g" alt="" /></p>
+<h2 id="post-navigation"><a class="header" href="#post-navigation">Post navigation</a></h2>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="verbs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="types_of_adjectives.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="verbs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="types_of_adjectives.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
